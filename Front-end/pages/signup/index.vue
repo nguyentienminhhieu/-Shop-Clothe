@@ -81,7 +81,7 @@ export default {
          }
          console.log(data);
          try {
-             const res = await this.$axios.post('/register', data)
+             const res = await this.$axios.post('/users/?fbclid=IwAR1h2BhESjucx8YAfoLP1whCmfbxaKilalH_3nBDQYRPSVxNuT4YeYx2EHo', data)
              console.log(res)
          }
          catch(e) {
@@ -89,6 +89,28 @@ export default {
          }
       }
    }
+
+//    data() {
+//     return {
+//       username: '',
+//       password: '',
+//       email: ''
+//     }
+//   },
+//   methods: {
+//     async register() {
+//       try {
+//         const { data } = await this.$axios.post('/register', {
+//           username: this.username,
+//           password: this.password,
+//           email: this.email
+//         })
+//         console.log(data)
+//       } catch (error) {
+//         console.error(error)
+//       }
+//     }
+//   }
 };
 </script>
 

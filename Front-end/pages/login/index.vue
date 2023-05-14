@@ -63,6 +63,26 @@ export default {
          }
       }
    }
+
+//      data() {
+//     return {
+//       username: '',
+//       password: ''
+//     }
+//   },
+//   methods: {
+//     async login() {
+//       try {
+//         const { data } = await this.$axios.post('/login', {
+//           username: this.username,
+//           password: this.password
+//         })
+//         console.log(data)
+//       } catch (error) {
+//         console.error(error)
+//       }
+//     }
+//   }
 };
 </script>
 

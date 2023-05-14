@@ -24,7 +24,11 @@ export default {
   css: ['~/assets/main.css', '@sweetalert2/theme-material-ui'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/cart.js"],
+  plugins: [
+    "~/plugins/cart.js",
+    "~/plugins/axios.js",
+    // '~/plugins/auth.js'
+      ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,13 +47,40 @@ export default {
     '@nuxt/content',
     'vue-sweetalert2/nuxt/no-css',
     'nuxt-webfontloader',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
   webfontloader: {
     google: {
       families: ["DM+Sans:wght@400;500;700&display=swap"],
     },
   },
-
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get' }
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    }
+  },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
@@ -102,4 +133,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  router: {
+    // middleware: 'authenticated'
+  }
 }

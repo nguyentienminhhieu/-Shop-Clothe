@@ -124,6 +124,12 @@ export default {
       })
     },
   },
+
+  // axios trong plugins
+  // async asyncData ({ $axios }) {
+  //   const { data } = await $axios.get('/posts')
+  //   return { posts: data }
+  // }
 }
 </script>
 <style lang=""></style>
