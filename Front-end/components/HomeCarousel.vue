@@ -1,5 +1,10 @@
 <template lang="">
-   <v-carousel height="100vh" hide-delimiter-background>
+   <v-carousel :height="getCarouselHeight"
+    hide-delimiter-background
+    :hide-delimiters="isMobile"
+    :hide-arrows="isMobile"
+    height="100vh" 
+    hide-delimiter-background>
     <template #prev="{ attrs, on }">
       <v-btn v-bind="attrs" v-on="on" color="transparent" fab depressed>
         <v-icon size="20">mdi-arrow-left</v-icon>
@@ -58,6 +63,20 @@ export default {
   props: {
     sale_items: Array,
   },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+    getCarouselHeight() {
+      return this.isMobile ? '60vh' : '100vh';
+    },
+  },
 }
 </script>
-<style lang=""></style>
+<style >
+@media (max-width: 600px) {
+  .v-carousel-item {
+    height: 50vh !important;
+  }
+}
+</style>

@@ -6,7 +6,7 @@
     class="pa-md-10 pa-5 text-center"
     color="surface"
   >
-    <h2 class="text-md-h6 font-weight-bold">FreeCommerce</h2>
+    <h2 class="text-md-h6 font-weight-bold">FreeShop</h2>
     <p class="text-md-body-2 mt-5">Free eCommerce Site Built With NuxtJS ❤</p>
     <div class="text-center">
       <v-btn

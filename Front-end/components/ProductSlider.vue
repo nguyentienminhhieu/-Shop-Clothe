@@ -1,11 +1,11 @@
 <template lang="">
     <v-slide-group>
-    <v-slide-item v-for="(p, i) in products" :key="`hotProduct-${i}`">
+    <v-slide-item v-for="(p, i) in products" :key="`hotProduct-${i}`" :class="{ 'mb-5': !isMobile, 'mb-2': isMobile }">
       <v-card
         nuxt
         :to="`/products/${p.id}`"
         color="surface"
-        width="300"
+        :width="isMobile ? '200' : '300'"
         class="el ma-2 mb-5 mr-5"
       >
         <v-img :src="p.image" height="300">
@@ -47,8 +47,21 @@ export default {
     props: {
     products: Array,
   },
+  computed: {
+    isMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+  },
 }
 </script>
-<style lang="">
-    
+<style >
+  .v-slide-item {
+  margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+  .v-slide-item {
+    margin-bottom: 10px;
+  }
+}
 </style>

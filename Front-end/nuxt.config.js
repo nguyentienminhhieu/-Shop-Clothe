@@ -27,6 +27,7 @@ export default {
   plugins: [
     "~/plugins/cart.js",
     "~/plugins/axios.js",
+    "~/plugins/vuelidate.js"
     // '~/plugins/auth.js'
       ],
 
