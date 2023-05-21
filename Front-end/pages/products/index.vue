@@ -34,7 +34,7 @@
                   label
                   outlined
                   class="mr-1"
-                  v-for="(t, i) in p.tags"
+                  v-for="(t, i) in p.products"
                   :key="`prod${p.id}-${i}`"
                 >
                   {{ t }}
@@ -49,13 +49,13 @@
 </template>
 <script>
 export default {
-  async created() {
-    this.categories = await this.$content('category').fetch()
-    this.products = await this.$content('products').fetch()
-  },
+  // async created() {
+  //   this.categories = await this.$content('category').fetch()
+  //   this.products = await this.$content('products').fetch()
+  // },
   data() {
     return {
-      products: null,
+      products: [],
       categories: null,
       search: null,
     }
@@ -67,23 +67,27 @@ export default {
         const s = this.search.toLowerCase()
         const n = p.name.toLowerCase()
         const price = p.price.toString()
-        const sprice = p.salePrice?.toString() || ''
         const r = p.ratings.toString()
         return (
           n.includes(s) ||
           price.includes(s) ||
-          sprice.includes(s) ||
           r.includes(s)
         )
       })
     },
   },
+  mounted() {
+  // Call the API and get the list of products
+  this.$axios
+    .get('http://127.0.0.1:8000/api/products')
+    .then((response) => {
+      this.products = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  },
 
-  // axios trong plugins
-  // async asyncData ({ $axios }) {
-  //   const { data } = await $axios.get('/posts')
-  //   return { posts: data }
-  // }
 }
 </script>
 <style lang=""></style>

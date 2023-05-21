@@ -31,9 +31,6 @@
             <li>
                 <nuxt-link to="/products/Cosmetics">Cosmetics</nuxt-link>
             </li>
-            <li>
-                <nuxt-link to="/products/Food">Food</nuxt-link>
-            </li>
         </ul>   
       <v-spacer />
       <v-btn nuxt to="/products" class="mr-md-2" icon>
@@ -52,7 +49,7 @@
         <v-icon size="20">mdi-cart-outline</v-icon>
       </v-btn>
       <v-divider vertical class="mx-md-5 mx-2" />
-      <v-btn nuxt to="/login" icon >
+      <v-btn nuxt to="/users/login" icon >
         <v-icon size="20">mdi-account-circle</v-icon>
       </v-btn>
       <v-btn @click="toggleTheme" icon>

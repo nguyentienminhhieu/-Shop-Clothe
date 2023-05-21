@@ -16,7 +16,7 @@
       >
       <v-spacer />
       <v-divider vertical class="mx-md-5 mx-2" />
-      <v-btn nuxt to="/login" icon >
+      <v-btn nuxt to="/users/login" icon >
         <v-icon size="20">mdi-account-circle</v-icon>
       </v-btn>
       <v-btn @click="toggleTheme" icon>
