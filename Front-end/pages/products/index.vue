@@ -1,5 +1,9 @@
 <template lang="">
   <div>
+    <input v-model="value_id" class="itemSearch_byID" type="text" placeholder="Nhập vào mã sản phẩm">
+    <button class="itemSearch_byID" @click="SearchProducts()">Tìm kiếm</button>
+
+
     <v-row>
       <template v-for="(p, i) in filteredProducts">
         <v-fade-transition :key="`product${p.id}-${i}`">
@@ -49,15 +53,12 @@
 </template>
 <script>
 export default {
-  // async created() {
-  //   this.categories = await this.$content('category').fetch()
-  //   this.products = await this.$content('products').fetch()
-  // },
   data() {
     return {
       products: [],
       categories: null,
       search: null,
+      value_id: null,
     }
   },
   computed: {
@@ -75,7 +76,14 @@ export default {
         )
       })
     },
+    
   },
+  methods: {
+    // chuyển hướng đến trang web tìm kiếm kia
+    SearchProducts(){
+      this.$router.push(`/products/${this.value_id}`);
+    },
+  },  
   mounted() {
   // Call the API and get the list of products
   this.$axios
@@ -90,4 +98,14 @@ export default {
 
 }
 </script>
-<style lang=""></style>
+<style>
+input.itemSearch_byID{
+  width: 50%;
+}
+  .itemSearch_byID{
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+</style>

@@ -61,16 +61,15 @@ export default {
   data() {
     return {
       products: null,
-      id: 1,
     };
   },
   mounted() {
     this.$axios
-    .get('http://127.0.0.1:8000/api/products/search/1')
+    .get(`http://127.0.0.1:8000/api/products/search/${this.$route.params.id}`)
     .then((response) => {
       this.products = response.data;
-      console.log(response);
-      console.log(this.products);
+      // console.log(response);
+      // console.log(this.products);
     })
     .catch((error) => {
       console.log(error);
