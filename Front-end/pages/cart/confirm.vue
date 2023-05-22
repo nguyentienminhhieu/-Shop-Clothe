@@ -144,7 +144,7 @@ export default {
         allowOutsideClick: false,
         timer: 4000,
         timerProgressBar: true,
-        text: "Thank You So Much ❤",
+        text: "Thank You So Much ",
         showConfirmButton: false,
       });
       //Remove items from cart

@@ -106,7 +106,6 @@ export default {
   },
   methods: {
     addToCart(product) {
-      // event.stopPropagation();
       this.$router.push('/products')
       this.$store.commit('cart/AddToCart', product)
     },
