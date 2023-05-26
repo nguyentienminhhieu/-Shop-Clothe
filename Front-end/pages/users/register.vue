@@ -13,25 +13,14 @@
                          <v-card-text>
                             <v-form>
                                 <v-text-field
-                                  name="firstname"
-                                  label="Firstname"
+                                  name="username"
+                                  label="Username"
                                   type="text"
-                                  v-model="firstName"
-                                  @blur="$v.firstName.$touch()"
+                                  v-model="username"
+                                  @blur="$v.username.$touch()"
                                ></v-text-field>
-                               <div v-if="$v.firstName.$error" class="form-error">
-                                <span v-if="!$v.firstName.required">Yêu cầu nhập Username</span>
-                               </div>
-                               <v-text-field
-                                  name="lastname"
-                                  label="Lastname"
-                                  type="text"
-                                  v-model="lastName"
-                                  @blur="$v.lastName.$touch()"
-                                  
-                               ></v-text-field>
-                               <div v-if="$v.lastName.$error" class="form-error">
-                                <span v-if="!$v.lastName.required">Yêu cầu nhập Username</span>
+                               <div v-if="$v.username.$error" class="form-error">
+                                <span v-if="!$v.username.required">Yêu cầu nhập Username</span>
                                </div>
                                <v-text-field
                                   name="email"
@@ -102,18 +91,14 @@
        name: 'Signup',
        data() {
           return {
-             firstName: null,
-             lastName: null,
+             username: null,
              email: null,
              password: null,
              confirmPassword: null,
           }
        },
        validations: {
-        firstName: {
-          required,
-        },
-        lastName: {
+        username: {
           required,
         },
         email: {
@@ -158,6 +143,7 @@
           } 
          }
        }
+       
     //    data() {
     //     return {
     //       username: '',

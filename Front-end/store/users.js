@@ -9,7 +9,6 @@ export const mutations = {
         state.users = users;
     }
 }
-
 export const actions = {
     async fetchUsers({commit}) {
         try {
@@ -27,3 +26,10 @@ export const getters = {
         return state.users;
     }
 }
+
+export default {
+    state,
+    getters,
+    actions,
+    mutations,
+  };

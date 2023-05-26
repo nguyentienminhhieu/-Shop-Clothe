@@ -4,6 +4,7 @@
     <v-container v-if="product">
       <v-row justify="center">
         <v-col cols="11" md="7">
+          <v-card @click="goToProduct(product.id)">
           <h2 class="text-center text-md-h4 font-weight-bold">
             {{ product.name }}
           </h2>
@@ -39,6 +40,9 @@
           <p class="mt-5 mb-7">
             {{ product.description }}
           </p>
+          <p class="text-center font-weight-bold">
+             Price: ${{ product.price }}
+          </p>
           <v-btn
             @click="$store.commit('cart/AddToCart', product)"
             min-height="45"
@@ -47,6 +51,7 @@
             color="primary"
             >Add To Cart</v-btn
           >
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -58,14 +63,25 @@
 
 
 <script>
+import axios from 'axios';
 export default {
+
   async created() {
-    let d = await this.$content('products')
-      .where({ id: parseInt(this.$route.params.id) })
-      .limit(1)
-      .fetch()
-    this.product = d[0]
+    const productId = this.$route.params.id;
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${productId}`);
+      this.product = response.data;
+    } catch (error) {
+      console.log(error);
+    }
   },
+  // async created() {
+  //   let d = await this.$content('products')
+  //     .where({ id: parseInt(this.$route.params.id) })
+  //     .limit(1)
+  //     .fetch()
+  //   this.product = d[0]
+  // },
   data() {
     return {
       product: null,
@@ -76,9 +92,14 @@ export default {
   // data() {
   //   return {
   //     products: null,
-  //     id: 1,
+  //     // id: '',
   //   };
   // },
+  methods: {
+  goToProduct(productId) {
+    this.$router.push(`/products/${productId}`);
+  },
+  },
   // mounted() {
   //   this.$axios
   //   .get('http://127.0.0.1:8000/api/products/search/1')
@@ -91,6 +112,15 @@ export default {
   //     console.log(error);
   //   });
   // },
+  
 }
 </script>
+
+
 <style lang=""></style>
+
+
+
+
+
+

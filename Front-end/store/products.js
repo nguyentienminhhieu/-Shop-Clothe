@@ -1,17 +1,17 @@
 import axios from "axios";
 
-export const state = () => ({
-    product: [],
+ const state = () => ({
+    products: [],
 });
 
-export const mutations = {
+ const mutations = {
     setProducts(state, products) {
         state.products = products;
     }
 }
 
-export const actions = {
-    async fetchProduct({commit}) {
+ const actions = {
+    async fetchProducts({commit}) {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/products')
             const products = response.data;
@@ -21,8 +21,19 @@ export const actions = {
         }
     }
 }
-export const getters = {
+ const getters = {
     getProducts(state) {
         return state.products;
+    },
+    saleItems(state) {
+        return state.products.filter(product => product.onSale === true)
     }
 }
+
+
+export default {
+    state,
+    getters,
+    actions,
+    mutations,
+  };

@@ -1,0 +1,22 @@
+{
+    "Logo": "FreeShop",
+    "Home": "ホーム",
+    "Shoes": "靴",
+    "Handbags": "ハンドバッグ",
+    "Shirts": "シャツ",
+    "Trousers": "ズボン",
+
+
+    "signup_title": "サインアップ",
+    "signup_btn": "サインアップに移動する",
+    "login": "ログイン",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "re-password": "再入力パスワード",
+    "Signup": "登録",
+    "username": "ユーザー名",
+    "required": "このフィールドは空白にできません！",
+    "error-email": "このフィールドは有効なメールアドレスでなければなりません！",
+    "minLength": "パスワードに必要な最小文字数",
+    "maxLength": "パスワードにはより少ない文字が必要です"
+  }

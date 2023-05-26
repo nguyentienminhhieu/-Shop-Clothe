@@ -5,6 +5,13 @@
       <v-row dense>
         <v-col md="2">
           <div style="position: sticky; top: 92px">
+            <!-- <v-text-field
+              prepend-inner-icon="mdi-magnify"
+              outlined
+              v-model="search"
+              clearable
+              placeholder="Search"
+            ></v-text-field> -->
             <v-list
               v-if="$vuetify.breakpoint.mdAndUp"
               color="transparent"
@@ -48,27 +55,27 @@ export default {
     return {
       products: null,
       categories: null,
-      search: null,
+      // search: null,
     }
   },
-  computed: {
-    filteredProducts() {
-      if (!this.products || !this.search) return this.products
-      return this.products.filter((p) => {
-        const s = this.search.toLowerCase()
-        const n = p.name.toLowerCase()
-        const price = p.price.toString()
-        const sprice = p.salePrice?.toString() || ''
-        const r = p.ratings.toString()
-        return (
-          n.includes(s) ||
-          price.includes(s) ||
-          sprice.includes(s) ||
-          r.includes(s)
-        )
-      })
-    },
-  },
+  // computed: {
+  //   filteredProducts() {
+  //     if (!this.products || !this.search) return this.products
+  //     return this.products.filter((p) => {
+  //       const s = this.search.toLowerCase()
+  //       const n = p.name.toLowerCase()
+  //       const price = p.price.toString()
+  //       const sprice = p.salePrice?.toString() || ''
+  //       const r = p.ratings.toString()
+  //       return (
+  //         n.includes(s) ||
+  //         price.includes(s) ||
+  //         sprice.includes(s) ||
+  //         r.includes(s)
+  //       )
+  //     })
+  //   },
+  // },
 
   // axios trong plugins
   // async asyncData ({ $axios }) {

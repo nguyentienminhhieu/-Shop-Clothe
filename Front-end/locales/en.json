@@ -1,0 +1,24 @@
+{
+    "Logo": "FreeShop",
+    "Home": "Home",
+    "Shoes": "Shoes",
+    "Handbags": "Handbags",
+    "Shirts": "Shirts",
+    "Trousers": "Trousers",
+
+
+    "signup_title": "Signup",
+    "signup_btn": "Go to Signup",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "re-password": "Re-password",
+    "Signup": "Signup",
+    "username": "Username",
+    "required": "This box cannot be left blank!",
+    "error-email": "This box must be email!",
+    "sameAs": "This box cannot be the same!",
+    "minLength": "Minimum password required ",
+    "maxLength": "Requires less password "
+
+}

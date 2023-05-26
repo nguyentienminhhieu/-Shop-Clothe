@@ -50,11 +50,38 @@ export default {
     'nuxt-webfontloader',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/i18n',
   ],
-  webfontloader: {
-    google: {
-      families: ["DM+Sans:wght@400;500;700&display=swap"],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        file: 'en.json',
+      },
+      {
+        code: 'vi',
+        iso: 'vi-VN',
+        file: 'vi.json',
+      },
+      {
+        code: 'ja',
+        iso: 'ja-JP',
+        file: 'ja.json',
+      },
+    ],
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./locales/en.json'),
+        vi: require('./locales/vi.json'),
+        ja: require('./locales/ja.json')
+      }
     },
+    lazy: true,
+    langDir: 'locales/' 
   },
   auth: {
     strategies: {

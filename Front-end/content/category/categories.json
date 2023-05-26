@@ -1,5 +1,5 @@
 [
-    {
+      {
         "id": 1,
         "name": "Shoes",
         "image": "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -11,12 +11,12 @@
       },
       {
         "id": 3,
-        "name": "Perfumes",
+        "name": "Shirt",
         "image": "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 4,
-        "name": "Cosmetics",
+        "name": "Trousers",
         "image": "https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       }
 ]

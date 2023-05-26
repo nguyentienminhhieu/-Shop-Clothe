@@ -6,8 +6,10 @@
     class="pa-md-10 pa-5 text-center"
     color="surface"
   >
+    <hr>
+    <br>
     <h2 class="text-md-h6 font-weight-bold">FreeShop</h2>
-    <p class="text-md-body-2 mt-5">Free eCommerce Site Built With NuxtJS ❤</p>
+    <p class="text-md-body-2 mt-5">Free eCommerce Site Built With NuxtJS</p>
     <div class="text-center">
       <v-btn
         color="surface"
@@ -28,10 +30,10 @@ export default {
     data() {
         return {
             sm: [
-        { icon: "mdi-facebook", link: "#" },
-        { icon: "mdi-twitter", link: "#" },
-        { icon: "mdi-instagram", link: "#" },
-        { icon: "mdi-youtube", link: "#" },
+        { icon: "mdi-facebook", link: "https://facebook.com" },
+        { icon: "mdi-twitter", link: "https://twitter.com" },
+        { icon: "mdi-instagram", link: "https://instagram.com" },
+        { icon: "mdi-youtube", link: "https://youtube.com" },
       ],
         }
     },

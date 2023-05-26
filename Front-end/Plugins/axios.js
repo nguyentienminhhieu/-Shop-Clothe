@@ -1,16 +1,15 @@
 
 // không cần xác thực authentication
 import axios from 'axios'
-window.axios = axios;
+
 const api = axios.create({
   baseURL: 'http://127.0.0.1:8000/api'
-})
+});
 
 export default ({ app }, inject) => {
   // Inject the axios instance into the context as $api
-  inject('api', api)
-
-}
+  inject('api', api);
+};
 
 
 // Khi cần xác thực authentication và k cần sử dụng nuxt/auth

@@ -56,8 +56,8 @@
                   size="20"
                  ></v-rating>
               </div>
-         
-              <v-card-actions>
+      
+              <!-- <v-card-actions>
                 <v-rating
                   v-model="p.rating"
                   :max="5"
@@ -65,7 +65,7 @@
                   background-color="transparent"
                   color="primary"
                 ></v-rating>
-              </v-card-actions>
+              </v-card-actions> -->
               <v-card-actions>
                 <v-btn color="primary" text @click="addToCart(p)">
                   Add to Cart
@@ -81,14 +81,19 @@
 <script>
 export default {
   async created() {
-    this.categories = await this.$content('category').fetch()
-    this.products = await this.$content('products').fetch()
+    // await this.$store.dispatch('products/fetchProducts')
   },
+  // khi dùng api laravel
+  // computed: {
+  //   getProducts(){
+  //     // return this.$store.getters['products/getProducts']
+  //   }
+  // },
+  
   data() {
     return {
-      // products: [],
       products: null,
-      categories: null,
+      // categories: null,
       search: null,
     }
   },
@@ -106,7 +111,6 @@ export default {
   },
   methods: {
     addToCart(product) {
-      // event.stopPropagation();
       this.$router.push('/products')
       this.$store.commit('cart/AddToCart', product)
     },
@@ -114,17 +118,19 @@ export default {
       this.$router.push(`/products/${productId}`)
     },
   },
-  // mounted() {
-  // // Call the API and get the list of products
-  // this.$axios
-  //   .get('http://127.0.0.1:8000/api/products')
-  //   .then((response) => {
-  //     this.products = response.data;
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // },
+  mounted() {
+  // Call the API and get the list of products
+  this.$api
+    .get('/products')
+    .then((response) => {
+      this.products = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  },
 }
+
 </script>
+
 <style lang=""></style>

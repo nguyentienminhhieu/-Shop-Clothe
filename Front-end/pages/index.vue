@@ -14,6 +14,8 @@
     <ScrollTop />
   </div>
 </template>
+
+
 <script>
 
 export default {
@@ -22,7 +24,14 @@ export default {
       .where({ onSale: true })
       .fetch();
     this.products = await this.$content("products").fetch();
+
+    // await this.$store.dispatch('products/fetchProduct'); 
   },
+  // computed: {
+  //   sale_items() {
+  //     this.$store.getters['products/saleItems']
+  //   }
+  // },
   data() {
     return {
       products: null,
@@ -31,6 +40,10 @@ export default {
   },
 }
 </script>
+
+
+
+
 <style lang="">
   
 </style>
