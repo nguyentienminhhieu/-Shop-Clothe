@@ -27,7 +27,8 @@ export default {
   plugins: [
     "~/plugins/cart.js",
     "~/plugins/axios.js",
-    "~/plugins/vuelidate.js"
+    "~/plugins/vuelidate.js",
+    "~/Plugins/api.js"
     // '~/plugins/auth.js'
       ],
 
@@ -163,5 +164,11 @@ export default {
   build: {},
   router: {
     // middleware: 'authenticated'
-  }
+  },
+  env: {
+    baseUrl: process.env.BASE_URL
+  },
+  axios: {
+    baseURL: process.env.BASE_URL
+  },  
 }

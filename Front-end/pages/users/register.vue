@@ -52,7 +52,7 @@
                                   Password cần ít nhất{{ $v.password.$params.maxLength.max }}kí tự
                                   </span>
                                </div>
-                               <v-text-field
+                               <!-- <v-text-field
                                   id="re-password"
                                   name="re-password"
                                   label="Re-password"
@@ -66,7 +66,7 @@
                                   <span v-if="!$v.confirmPassword.sameAs">
                                   Password không chùng nhau 
                                   </span>
-                               </div>
+                               </div> -->
                             </v-form>
                          </v-card-text>
                          <v-card-actions>
@@ -93,8 +93,8 @@
           return {
              username: null,
              email: null,
-             password: null,
-             confirmPassword: null,
+             password: null
+             
           }
        },
        validations: {
@@ -110,10 +110,6 @@
           minLength: minLength(6),
           maxLength: maxLength(15),
         },
-        confirmPassword: {
-          required,
-          sameAs: sameAs('password'),
-        }
        },
        methods: {
            signupHandler() {
@@ -125,7 +121,6 @@
                 lastName: this.lastName,
                 email: this.email,
                 password: this.password,
-                confirmPassword: this.confirmPassword
             }
             // eslint-disable-next-line no-console
             console.log(formData)

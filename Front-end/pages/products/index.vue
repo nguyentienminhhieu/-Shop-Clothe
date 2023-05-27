@@ -9,7 +9,8 @@
         placeholder="Search"
       ></v-text-field>
     </div>
-    <v-row>
+    <v-row >
+      
       <template v-for="(p, i) in filteredProducts">
         <v-fade-transition :key="`product${p.id}-${i}`">
           <v-col cols="12" md="4">
@@ -79,25 +80,24 @@
   </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
+import {GET_PRODUCTS} from '@/store/products' 
 export default {
   async created() {
-    // await this.$store.dispatch('products/fetchProducts')
+    await this.$store.dispatch(`${GET_PRODUCTS}`)
   },
-  // khi dùng api laravel
-  // computed: {
-  //   getProducts(){
-  //     // return this.$store.getters['products/getProducts']
-  //   }
-  // },
-  
+ 
   data() {
     return {
-      products: null,
+      // products: null,
       // categories: null,
       search: null,
     }
   },
   computed: {
+        ...mapGetters({
+      products: "getProducts",
+    }),
     filteredProducts() {
       if (!this.products || !this.search) return this.products
       return this.products.filter((p) => {
@@ -118,17 +118,17 @@ export default {
       this.$router.push(`/products/${productId}`)
     },
   },
-  mounted() {
-  // Call the API and get the list of products
-  this.$api
-    .get('/products')
-    .then((response) => {
-      this.products = response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },
+  // mounted() {
+  // // Call the API and get the list of products
+  // this.$api
+  //   .get('/products')
+  //   .then((response) => {
+  //     this.products = response.data;
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // },
 }
 
 </script>

@@ -48,6 +48,9 @@ export default {
     products: Array,
   },
   computed: {
+    productNews() {
+      return this.products.filter(product => product.news == true)
+    },
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },

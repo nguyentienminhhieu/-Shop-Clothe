@@ -1,12 +1,12 @@
 <template lang="">
   <div>
     <DesktopNav />
-    <v-container v-if="product">
+    <v-container v-if="product_detail">
       <v-row justify="center">
         <v-col cols="11" md="7">
-          <v-card @click="goToProduct(product.id)">
+          <v-card @click="goToProduct(product_detail.id)">
           <h2 class="text-center text-md-h4 font-weight-bold">
-            {{ product.name }}
+            {{ product_detail.name }}
           </h2>
           <div class="mt-2 text-center">
             <v-rating
@@ -15,7 +15,7 @@
               class="mb-2"
               color="yellow darken-2"
               background-color="grey lighten-1"
-              :value="product.ratings"
+              :value="product_detail.ratings"
               dense
               size="20"
             ></v-rating>
@@ -24,8 +24,8 @@
               label
               outlined
               class="mr-1"
-              v-for="(t, i) in product.tags"
-              :key="`prod${product.id}-${i}`"
+              v-for="(t, i) in product_detail.tags"
+              :key="`prod${product_detail.id}-${i}`"
             >
               {{ t }}
             </v-chip>
@@ -35,13 +35,13 @@
             width="100%"
             class="el rounded-lg"
             height="50vh"
-            :src="product.image"
+            :src="product_detail.image"
           ></v-img>
           <p class="mt-5 mb-7">
-            {{ product.description }}
+            {{ product_detail.description }}
           </p>
           <p class="text-center font-weight-bold">
-             Price: ${{ product.price }}
+             Price: ${{ product_detail.price }}
           </p>
           <v-btn
             @click="$store.commit('cart/AddToCart', product)"
@@ -63,18 +63,26 @@
 
 
 <script>
-import axios from 'axios';
+import {mapGetters} from 'vuex'
+import {GET_PRODUCTS_ID} from '@/store/products' 
 export default {
-
   async created() {
-    const productId = this.$route.params.id;
-    try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${productId}`);
-      this.product = response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    await this.$store.dispatch(`${GET_PRODUCTS_ID}`, this.$route.params.id)
   },
+    computed: {
+        ...mapGetters({
+      product_detail: "getProductID",
+    }),
+  },
+  // async created() {
+  //   const productId = this.$route.params.id;
+  //   try {
+  //     const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${productId}`);
+  //     this.product = response.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
   // async created() {
   //   let d = await this.$content('products')
   //     .where({ id: parseInt(this.$route.params.id) })

@@ -25,7 +25,7 @@
         ></v-progress-circular>
       </v-row> -->
     </template>
-    <v-carousel-item v-for="(p, i) in sale_items" :key="`saleitem${i}`">
+    <v-carousel-item v-for="(p, i) in productSale" :key="`saleitem${i}`">
       <v-img height="100vh" :src="p.image">
         <v-container class="fill-height">
           <v-row dense align="center">
@@ -64,6 +64,9 @@ export default {
     sale_items: Array,
   },
   computed: {
+    productSale() {
+      return this.sale_items.filter(product => product.onSale == true)
+    },
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },
