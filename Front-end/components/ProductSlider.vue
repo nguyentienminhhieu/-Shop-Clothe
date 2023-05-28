@@ -1,6 +1,6 @@
 <template lang="">
     <v-slide-group>
-    <v-slide-item v-for="(p, i) in products" :key="`hotProduct-${i}`" :class="{ 'mb-5': !isMobile, 'mb-2': isMobile }">
+    <v-slide-item v-for="(p, i) in productNews" :key="`hotProduct-${i}`" :class="{ 'mb-5': !isMobile, 'mb-2': isMobile }">
       <v-card
         nuxt
         :to="`/products/${p.id}`"
@@ -44,7 +44,7 @@
 </template>
 <script>
 export default {
-    props: {
+  props: {
     products: Array,
   },
   computed: {

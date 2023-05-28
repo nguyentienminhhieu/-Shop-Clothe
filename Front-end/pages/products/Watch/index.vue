@@ -83,7 +83,7 @@ export default {
   },
   computed: {
         ...mapGetters({
-      products: "productHandbags",
+      products: "productWatch",
     }),
     filteredProducts() {
       if (!this.products || !this.search) return this.products

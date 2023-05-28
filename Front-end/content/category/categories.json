@@ -11,12 +11,17 @@
       },
       {
         "id": 3,
-        "name": "Shirt",
+        "name": "Clothes",
         "image": "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 4,
-        "name": "Trousers",
+        "name": "Perfume",
         "image": "https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      },
+      {
+        "id": 5,
+        "name": "Watch",
+        "image": "https://demoda.vn/wp-content/uploads/2022/01/xu-huong-dong-ho-nu-duoc-ua-chuong.jpg"
       }
 ]

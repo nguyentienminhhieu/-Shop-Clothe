@@ -21,19 +21,6 @@
 import {mapGetters} from 'vuex'
 import {GET_PRODUCTS} from '@/store/products' 
 export default {
-  // async created() {
-  //   this.sale_items = await this.$content("products")
-  //     .where({ onSale: true })
-  //     .fetch();
-  //   this.products = await this.$content("products").fetch();
-
-  //   // await this.$store.dispatch('products/fetchProduct'); 
-  // },
-  // computed: {
-  //   sale_items() {
-  //     this.$store.getters['products/saleItems']
-  //   }
-  // },
    async created() {
     await this.$store.dispatch(`${GET_PRODUCTS}`)
   },
@@ -42,15 +29,6 @@ export default {
       products: "getProducts",
     }),
   },
-  // data() {
-  //   return {
-  //     products: null,
-  //     sale_items: null,
-  //   };
-  // },
-  // async created() {
-  //   await this.$store.dispatch('products/fetchProducts');
-  // },
 }
 </script>
 

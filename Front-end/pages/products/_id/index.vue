@@ -74,53 +74,16 @@ export default {
       product_detail: "getProductID",
     }),
   },
-  // async created() {
-  //   const productId = this.$route.params.id;
-  //   try {
-  //     const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${productId}`);
-  //     this.product = response.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
-  // async created() {
-  //   let d = await this.$content('products')
-  //     .where({ id: parseInt(this.$route.params.id) })
-  //     .limit(1)
-  //     .fetch()
-  //   this.product = d[0]
-  // },
   data() {
     return {
       product: null,
     } 
   },
-  
-  // layout: 'searchP',
-  // data() {
-  //   return {
-  //     products: null,
-  //     // id: '',
-  //   };
-  // },
   methods: {
   goToProduct(productId) {
     this.$router.push(`/products/${productId}`);
   },
-  },
-  // mounted() {
-  //   this.$axios
-  //   .get('http://127.0.0.1:8000/api/products/search/1')
-  //   .then((response) => {
-  //     this.products = response.data;
-  //     console.log(response);
-  //     console.log(this.products);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // },
-  
+  },  
 }
 </script>
 

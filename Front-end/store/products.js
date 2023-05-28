@@ -6,6 +6,7 @@ export const GET_PRODUCTS_ID = 'products/searchByID'
 const state = () => ({
     products: [],
     product_detail: {},
+    sale_item: []
 });
 
 const mutations = {
@@ -59,9 +60,21 @@ const getters = {
     getProductID(state) {
         return state.product_detail;
     },
-    saleItems(state) {
-        return state.products.filter(product => product.onSale === true)
-    }
+    productHandbags(state) {
+      return state.products.filter(product => product.id_tag == 3)
+    },
+    productShoes(state) {
+      return state.products.filter(product => product.id_tag == 4)
+    },
+    productClothes(state) {
+      return state.products.filter(product => product.id_tag == 6)
+    },
+    productPerfume(state) {
+      return state.products.filter(product => product.id_tag == 1)
+    },
+    productWatch(state) {
+      return state.products.filter(product => product.id_tag == 7)
+    },
 }
 
 

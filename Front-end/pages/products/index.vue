@@ -10,7 +10,7 @@
       ></v-text-field>
     </div>
     <v-row >
-      
+      {{productHandbags}}
       <template v-for="(p, i) in filteredProducts">
         <v-fade-transition :key="`product${p.id}-${i}`">
           <v-col cols="12" md="4">
@@ -57,16 +57,6 @@
                   size="20"
                  ></v-rating>
               </div>
-      
-              <!-- <v-card-actions>
-                <v-rating
-                  v-model="p.rating"
-                  :max="5"
-                  :half-increments="true"
-                  background-color="transparent"
-                  color="primary"
-                ></v-rating>
-              </v-card-actions> -->
               <v-card-actions>
                 <v-btn color="primary" text @click="addToCart(p)">
                   Add to Cart
@@ -89,8 +79,6 @@ export default {
  
   data() {
     return {
-      // products: null,
-      // categories: null,
       search: null,
     }
   },
@@ -118,17 +106,6 @@ export default {
       this.$router.push(`/products/${productId}`)
     },
   },
-  // mounted() {
-  // // Call the API and get the list of products
-  // this.$api
-  //   .get('/products')
-  //   .then((response) => {
-  //     this.products = response.data;
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // },
 }
 
 </script>

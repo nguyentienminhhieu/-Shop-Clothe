@@ -49,39 +49,13 @@
 export default {
   async created() {
     this.categories = await this.$content('category').fetch()
-    this.products = await this.$content('products').fetch()
+
   },
   data() {
     return {
-      products: null,
       categories: null,
-      // search: null,
     }
   },
-  // computed: {
-  //   filteredProducts() {
-  //     if (!this.products || !this.search) return this.products
-  //     return this.products.filter((p) => {
-  //       const s = this.search.toLowerCase()
-  //       const n = p.name.toLowerCase()
-  //       const price = p.price.toString()
-  //       const sprice = p.salePrice?.toString() || ''
-  //       const r = p.ratings.toString()
-  //       return (
-  //         n.includes(s) ||
-  //         price.includes(s) ||
-  //         sprice.includes(s) ||
-  //         r.includes(s)
-  //       )
-  //     })
-  //   },
-  // },
-
-  // axios trong plugins
-  // async asyncData ({ $axios }) {
-  //   const { data } = await $axios.get('/posts')
-  //   return { posts: data }
-  // }
 }
 </script>
 <style >
