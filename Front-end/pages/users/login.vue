@@ -8,7 +8,7 @@
               <v-flex xs12 sm8 md4>
                 <v-card class="elevation-12">
                   <v-toolbar dark color="primary">
-                    <v-toolbar-title>Login form</v-toolbar-title>
+                    <v-toolbar-title>Đăng nhập</v-toolbar-title>
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
@@ -46,11 +46,11 @@
                   </v-card-text>
                   <v-card-actions>
                     <p>
-                      If you dont have account. Click
-                      <nuxt-link to="/users/register">Signup</nuxt-link> right here
+                      Bạn chưa có tài khoản? 
+                      <nuxt-link to="/users/register">Đăng ký</nuxt-link>
                     </p>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="loginHandler">Login</v-btn>
+                    <v-btn color="primary" @click="loginHandler">Đăng nhập</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-flex>
@@ -64,7 +64,7 @@
   <script>
   import { required, email } from 'vuelidate/lib/validators'
   export default {
-    name: 'Login',
+    // name: 'Login',
     data() {
       return {
         email: '',
@@ -76,19 +76,34 @@
       loginHandler() {
         this.$v.$touch()
         if (!this.$v.$invalid) {
-          // Dữ liệu hợp lệ, thực hiện xử lý đăng nhập
-          const data = { email: this.email, password: this.password }
-          console.log(data)
-          // try{
-          //    const response = await this.$auth.loginWith('local', { data: data})
-          //    console.log(response)
-          //    this.$auth.$storage.setUniversal('email', response.data.email)
-          //    await this.$auth.setUserToken(response.data.access_token, response.data.refresh_token)
-          // } catch(e) {
-          //    console.log(e.message)
-          // }
+
+          this.$axios
+            .post('http://127.0.0.1:8000/api/users/login',{
+              email: this.email,
+              password: this.password,
+            })
+            .then((response) => {
+              // console.log(response);
+              // console.log(response.data.users.department_id);
+              if(response.data.message == true){
+                alert("Đăng nhập thành công");
+                if(response.data.users.department_id == 1){
+                  // chuyển đến trang quản lý
+                  this.$router.push(`../manager/`);
+                }
+                else{
+                  // chuyển đến trang người dùng - trang home
+                  this.$router.push(`../`);
+                }
+              }else{
+                alert("Thông tin tài khoản mật khẩu không chính xác");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });   
+
         } else {
-          // Dữ liệu không hợp lệ, hiển thị thông báo lỗi
           alert('Vui lòng nhập đủ thông tin!')
         }
       },
@@ -97,25 +112,6 @@
       email: { required, email },
       password: { required },
     },
-    //      data() {
-    //     return {
-    //       username: '',
-    //       password: ''
-    //     }
-    //   },
-    //   methods: {
-    //     async login() {
-    //       try {
-    //         const { data } = await this.$axios.post('/login', {
-    //           username: this.username,
-    //           password: this.password
-    //         })
-    //         console.log(data)
-    //       } catch (error) {
-    //         console.error(error)
-    //       }
-    //     }
-    //   }
   }
   </script>
   

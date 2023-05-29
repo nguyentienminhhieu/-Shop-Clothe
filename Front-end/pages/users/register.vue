@@ -8,7 +8,7 @@
                    <v-flex xs12 sm8 md4>
                       <v-card class="elevation-12">
                          <v-toolbar dark color="primary">
-                            <v-toolbar-title>Signup form</v-toolbar-title>
+                            <v-toolbar-title>Đăng ký</v-toolbar-title>
                          </v-toolbar>
                          <v-card-text>
                             <v-form>
@@ -20,7 +20,7 @@
                                   @blur="$v.username.$touch()"
                                ></v-text-field>
                                <div v-if="$v.username.$error" class="form-error">
-                                <span v-if="!$v.username.required">Yêu cầu nhập Username</span>
+                                <span v-if="!$v.username.required">Yêu cầu nhập tài khoản</span>
                                </div>
                                <v-text-field
                                   name="email"
@@ -70,9 +70,9 @@
                             </v-form>
                          </v-card-text>
                          <v-card-actions>
-                              <p>If you have account. Click <nuxt-link to="/users/login">Login</nuxt-link> right here</p>
+                              <p>Bạn đã có tài khoản?<nuxt-link to="/users/login"> Đăng nhập</nuxt-link></p>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" @click="signupHandler">Signup</v-btn>
+                            <v-btn color="primary" @click="signupHandler">Đăng ký</v-btn>
                          </v-card-actions>
                       </v-card>
                    </v-flex>
@@ -94,7 +94,6 @@
              username: null,
              email: null,
              password: null
-             
           }
        },
        validations: {
@@ -117,8 +116,7 @@
           if (!this.$v.$invalid) {
             // Thực hiện đăng nhập
             const formData = {
-                firstName: this.firstName,
-                lastName: this.lastName,
+                username: this.username,
                 email: this.email,
                 password: this.password,
             }
