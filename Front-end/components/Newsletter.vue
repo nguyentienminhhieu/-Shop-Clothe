@@ -15,15 +15,15 @@
   </v-card> -->
 
   <v-card rounded="lg" class="pa-md-10 pa-5 text-center" color="primary" dark>
-    <h2 class="text-md-h3">{{$t('Newsletter')}}</h2>
-    <p class="text-md-h6 mt-5">{{$t('TitleSubscribe')}}</p>
+    <h2 class="text-md-h3">Newsletter</h2>
+    <p class="text-md-h6 mt-5">Subscribe to receive discounts & more!</p>
     <br />
     <v-container fluid>
       <v-row justify="center">
         <v-col cols="12" sm="8" md="6" lg="4">
           <v-sheet color="transparent">
             <v-text-field v-model="email" label="Email" outlined></v-text-field>
-            <v-btn @click="submit" outlined min-height="50" block>{{$t('btnSubscribe')}}</v-btn>
+            <v-btn @click="submit" outlined min-height="50" block>Subscribe</v-btn>
           </v-sheet>
         </v-col>
       </v-row>

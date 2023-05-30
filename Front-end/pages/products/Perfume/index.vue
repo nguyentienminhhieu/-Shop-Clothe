@@ -58,7 +58,7 @@
               </div>
               <v-card-actions>
                 <v-btn color="primary" text @click="addToCart(p)">
-                {{$t('AddToCart')}}
+                  Thêm vào giỏ hàng
                 </v-btn>
               </v-card-actions>
             </v-card>

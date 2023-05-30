@@ -8,7 +8,7 @@
               <v-flex xs12 sm8 md4>
                 <v-card class="elevation-12">
                   <v-toolbar dark color="primary">
-                    <v-toolbar-title>{{$t('login')}}</v-toolbar-title>
+                    <v-toolbar-title>Đăng nhập</v-toolbar-title>
                   </v-toolbar>
                   <v-card-text>
                     <v-form>
@@ -22,10 +22,10 @@
                       ></v-text-field>
                       <div v-if="$v.email.$error" class="form-error">
                         <span v-if="!$v.email.required"
-                          >{{$t('required')}}</span
+                          >Yêu cầu nhập trường dữ liệu này</span
                         >
                         <span v-if="!$v.email.email"
-                          >{{$t('error-email')}}</span
+                          >Yêu cầu nhập đúng email</span
                         >
                       </div>
                       <v-text-field
@@ -39,7 +39,7 @@
                       ></v-text-field>
                       <div v-if="$v.password.$error" class="form-error">
                         <span v-if="!$v.password.required"
-                          >{{$t('required')}}</span
+                          >Yêu cầu nhập trường dữ liệu này</span
                         >
                       </div>
                     </v-form>
@@ -47,10 +47,10 @@
                   <v-card-actions>
                     <p>
                       Bạn chưa có tài khoản? 
-                      <nuxt-link to="/users/register">{{$t('Register')}}</nuxt-link>
+                      <nuxt-link to="/users/register">Đăng ký</nuxt-link>
                     </p>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="loginHandler">{{$t('Login')}}</v-btn>
+                    <v-btn color="primary" @click="loginHandler">Đăng nhập</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-flex>

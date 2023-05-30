@@ -17,22 +17,22 @@
       <v-spacer />
       <ul class="nav-links">
             <li>
-                <nuxt-link to="/">{{$t('Home')}}</nuxt-link>
+                <nuxt-link to="/">Trang chủ</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Shoes">{{$t('Shoes')}}</nuxt-link>
+                <nuxt-link to="/products/Shoes">Giày dép</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Handbags">{{$t('Handbags')}}</nuxt-link>
+                <nuxt-link to="/products/Handbags">Túi sách</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Clothes">{{$t('Clothes')}}</nuxt-link>
+                <nuxt-link to="/products/Clothes">Quần áo</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Perfume">{{$t('Perfume')}}</nuxt-link>
+                <nuxt-link to="/products/Perfume">Nước hoa</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Watch">{{$t('Watch')}}</nuxt-link>
+                <nuxt-link to="/products/Watch">Đồng hồ</nuxt-link>
             </li>
         </ul>   
       <v-spacer />

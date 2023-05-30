@@ -17,7 +17,7 @@
               color="transparent"
               subheader
             >
-              <v-subheader>Categories</v-subheader>
+              <v-subheader>Loại hàng</v-subheader>
               <nuxt-link v-for="(c, index) in categories" :key="index" :to="`/products/${c.name}`" class="text-decoration-none">
               <v-list-item
                 link
