@@ -1,27 +1,27 @@
 [
       {
         "id": 1,
-        "name": "Giày dép",
+        "name": "Shoes",
         "image": "https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 2,
-        "name": "Túi sách",
+        "name": "Handbags",
         "image": "https://images.pexels.com/photos/45981/pexels-photo-45981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 3,
-        "name": "Quần áo",
+        "name": "Clothes",
         "image": "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 4,
-        "name": "Nước hoa",
+        "name": "Perfume",
         "image": "https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       },
       {
         "id": 5,
-        "name": "Đồng hồ",
+        "name": "Watch",
         "image": "https://demoda.vn/wp-content/uploads/2022/01/xu-huong-dong-ho-nu-duoc-ua-chuong.jpg"
       }
 ]
