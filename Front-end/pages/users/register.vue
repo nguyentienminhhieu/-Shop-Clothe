@@ -8,7 +8,7 @@
                    <v-flex xs12 sm8 md4>
                       <v-card class="elevation-12">
                          <v-toolbar dark color="primary">
-                            <v-toolbar-title>Đăng ký</v-toolbar-title>
+                            <v-toolbar-title>{{$t('Register')}}</v-toolbar-title>
                          </v-toolbar>
                          <v-card-text>
                             <v-form>
@@ -20,7 +20,7 @@
                                   @blur="$v.username.$touch()"
                                ></v-text-field>
                                <div v-if="$v.username.$error" class="form-error">
-                                <span v-if="!$v.username.required">Yêu cầu nhập tài khoản</span>
+                                <span v-if="!$v.username.required">{{$t('required')}}</span>
                                </div>
                                <v-text-field
                                   name="email"
@@ -31,8 +31,8 @@
     
                                ></v-text-field>
                                <div v-if="$v.email.$error" class="form-error">
-                               <span v-if="!$v.email.required">Yêu cầu nhập Email</span>
-                               <span v-if="!$v.email.email">Địa chỉ email không hợp lệ </span>
+                               <span v-if="!$v.email.required">{{$t('required')}}</span>
+                               <span v-if="!$v.email.email">{{$t('error-email')}}</span>
                                </div>
                                <v-text-field
                                   id="password"
@@ -44,12 +44,12 @@
                                   
                                ></v-text-field>
                                <div v-if="$v.password.$error" class="form-error">
-                                  <span v-if="!$v.password.required">Yêu cầu nhập Password</span>
+                                  <span v-if="!$v.password.required">{{$t('required')}}</span>
                                   <span v-if="!$v.password.minLength">
-                                   Password cần ít nhất {{ $v.password.$params.minLength.min }}  kí tự
+                                   {{ $t('minLength')}} {{ $v.password.$params.minLength.min }}  
                                   </span>
                                   <span v-if="!$v.password.maxLength">
-                                  Password cần ít nhất{{ $v.password.$params.maxLength.max }}kí tự
+                                  {{ $t('maxLength')}} {{ $v.password.$params.maxLength.max }}
                                   </span>
                                </div>
                                <!-- <v-text-field
@@ -70,9 +70,9 @@
                             </v-form>
                          </v-card-text>
                          <v-card-actions>
-                              <p>Bạn đã có tài khoản?<nuxt-link to="/users/login"> Đăng nhập</nuxt-link></p>
+                              <p>Bạn đã có tài khoản?<nuxt-link to="/users/login"> {{ $t('login') }}</nuxt-link></p>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" @click="signupHandler">Đăng ký</v-btn>
+                            <v-btn color="primary" @click="signupHandler">{{ $t('Register') }}</v-btn>
                          </v-card-actions>
                       </v-card>
                    </v-flex>

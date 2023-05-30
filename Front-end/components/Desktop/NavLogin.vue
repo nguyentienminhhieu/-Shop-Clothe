@@ -29,6 +29,13 @@
       <v-btn @click="toggleTheme" icon>
         <v-icon size="20">mdi-brightness-7</v-icon>
       </v-btn>
+    <div>
+    <select v-model="locale" @change="changeLocale">
+      <option value="en">English</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="ja">日本語</option>
+    </select>    
+    </div>
     </v-app-bar>
   </div>
 </template>
@@ -37,6 +44,7 @@ export default {
 data() {
     return {
       showAccountMenu: false,
+      locale: this.$i18n.locale,
     };
   },
    mounted() {
@@ -62,6 +70,10 @@ data() {
       if (accountMenuContainer && !accountMenuContainer.contains(event.target)) {
         this.hideAccountMenu();
       }
+    },
+     changeLocale() {
+      this.$i18n.locale = this.locale;
+      this.$router.push(this.switchLocalePath(this.locale))
     },
   },
 }

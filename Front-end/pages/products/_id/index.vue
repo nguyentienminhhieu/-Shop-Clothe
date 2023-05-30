@@ -41,7 +41,7 @@
             {{ product_detail.description }}
           </p>
           <p class="text-center font-weight-bold">
-             Price: ${{ product_detail.price }}
+             {{$t('Price')}}: ${{ product_detail.price }}
           </p>
           <v-btn
             @click="$store.commit('cart/AddToCart', product)"
@@ -49,7 +49,7 @@
             min-width="170"
             class="text-capitalize"
             color="primary"
-            >Add To Cart</v-btn
+            >{{$t('AddToCart')}}</v-btn
           >
           </v-card>
         </v-col>

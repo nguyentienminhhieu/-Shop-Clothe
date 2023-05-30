@@ -18,13 +18,13 @@
                         <nuxt-link to="/">{{$t('Home')}}</nuxt-link>
                     </li> -->
                     <li>
-                        <nuxt-link to="./users">Tài khoản</nuxt-link>
+                        <nuxt-link to="./users">{{$t('Account')}}</nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link to="./products">Sản phẩm</nuxt-link>
+                        <nuxt-link to="./products">{{$t('Products')}}</nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link to="./tags">Loại hàng</nuxt-link>
+                        <nuxt-link to="./tags">{{$t('Tags')}}</nuxt-link>
                     </li>
                 </ul>   
             <v-spacer />
@@ -38,6 +38,13 @@
             <v-btn @click="toggleTheme" icon>
                 <v-icon size="20">mdi-brightness-7</v-icon>
             </v-btn>
+              <div>
+    <select v-model="locale" @change="changeLocale">
+      <option value="en">English</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="ja">日本語</option>
+    </select>    
+    </div>
         </v-app-bar>
     </div>    
 </template>
@@ -76,6 +83,10 @@ export default {
                 this.hideAccountMenu();
             }
         },
+         changeLocale() {
+      this.$i18n.locale = this.locale;
+      this.$router.push(this.switchLocalePath(this.locale))
+    },
     },
 }
 </script>

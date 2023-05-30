@@ -10,7 +10,6 @@
       ></v-text-field>
     </div>
     <v-row >
-      {{productHandbags}}
       <template v-for="(p, i) in filteredProducts">
         <v-fade-transition :key="`product${p.id}-${i}`">
           <v-col cols="12" md="4">

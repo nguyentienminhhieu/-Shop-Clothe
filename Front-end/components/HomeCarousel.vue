@@ -48,7 +48,7 @@
                   color="primary"
                   class="text-capitalize"
                   min-height="40"
-                  >Check It Out</v-btn
+                  >{{$t('Check')}}</v-btn
                 >
               </div>
             </v-col>

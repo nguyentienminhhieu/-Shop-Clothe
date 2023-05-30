@@ -5,8 +5,6 @@
     "Handbags": "Handbags",
     "Shirts": "Shirts",
     "Trousers": "Trousers",
-
-
     "signup_title": "Signup",
     "signup_btn": "Go to Signup",
     "login": "Login",
@@ -19,6 +17,17 @@
     "error-email": "This box must be email!",
     "sameAs": "This box cannot be the same!",
     "minLength": "Minimum password required ",
-    "maxLength": "Requires less password "
-
+    "maxLength": "Requires less password ",
+    "Check" : "Check It Out",
+    "Newsletter": "Newsletter",
+    "TitleSubscribe":"Subscribe to receive discounts & more!",
+    "btnSubscribe": "Subscribe",
+    "AddToCart": "Add To Cart",
+    "Account": "Account",
+    "infoAccount": "infoAccount",
+    "Register":"Register",
+    "Logout":"Logout",
+    "Products": "Products",
+    "Tags" : "Tags",
+    "Price": "Price"
 }

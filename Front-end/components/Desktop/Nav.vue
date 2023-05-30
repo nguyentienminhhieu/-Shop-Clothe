@@ -20,19 +20,19 @@
                 <nuxt-link to="/">{{$t('Home')}}</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Shoes">Shoes</nuxt-link>
+                <nuxt-link to="/products/Shoes">{{$t('Shoes')}}</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Handbags">Handbags</nuxt-link>
+                <nuxt-link to="/products/Handbags">{{$t('Handbags')}}</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Clothes">Clothes</nuxt-link>
+                <nuxt-link to="/products/Clothes">{{$t('Clothes')}}</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Perfume">Perfume</nuxt-link>
+                <nuxt-link to="/products/Perfume">{{$t('Perfume')}}</nuxt-link>
             </li>
             <li>
-                <nuxt-link to="/products/Watch">Watch</nuxt-link>
+                <nuxt-link to="/products/Watch">{{$t('Watch')}}</nuxt-link>
             </li>
         </ul>   
       <v-spacer />

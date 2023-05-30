@@ -1,16 +1,16 @@
 <template>
     <div class="account-menu" :class="{ dark: darkMode }">
         <p class="menu-link" v-if="user">{{user.name}}</p>
-        <p class="menu-link" v-else>Account</p>
+        <p class="menu-link" v-else>{{$t('Account')}}</p>
         
         <!-- <nuxt-link v-if="user" to="/users/profile" class="menu-link">Thông tin tài khoản</nuxt-link>
         <nuxt-link v-if="user" to="/users/login" class="menu-link">Logout</nuxt-link>
         <nuxt-link v-else to="/users/login" class="menu-link">Login</nuxt-link> -->
  
-        <nuxt-link v-if="user" to="/users/profile" class="menu-link">Thông tin tài khoản</nuxt-link>
-        <nuxt-link v-if="isLoginPage" to="/users/register" class="menu-link">Register</nuxt-link>
-        <nuxt-link v-if="user && !isLoginPage" to="/users/login" class="menu-link">Logout</nuxt-link>
-        <nuxt-link v-if="!user && !isLoginPage" to="/users/login" class="menu-link">Login</nuxt-link>
+        <nuxt-link v-if="user" to="/users/profile" class="menu-link">{{$t('infoAccount')}}</nuxt-link>
+        <nuxt-link v-if="isLoginPage" to="/users/register" class="menu-link">{{$t('infoAccount')}}</nuxt-link>
+        <nuxt-link v-if="user && !isLoginPage" to="/users/login" class="menu-link">{{$t('Logout')}}</nuxt-link>
+        <nuxt-link v-if="!user && !isLoginPage" to="/users/login" class="menu-link">{{$t('login')}}</nuxt-link>
 
     </div>
 </template>
