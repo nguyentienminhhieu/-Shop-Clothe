@@ -20,7 +20,7 @@
               
               <br>
               <button @click="updateAccount(users.id)" type="submit" class="button-update">Lưu thông tin</button>
-              <!-- <button @click="changePage()" type="submit" class="button-update">Quay lại</button> -->
+              <button @click="homeAccount()" type="submit" class="button-update">Quay lại</button>
             <!-- </form> -->
         </div>
       </div>
@@ -48,7 +48,7 @@ export default {
         .then((response) => {
           // console.log(response)
           alert("Cập nhật tài khoản thành công");
-          this.$router.push('./')
+          this.$router.push('/manager/users/')
         })
         .catch((error) => {
           console.log(error);
@@ -64,7 +64,7 @@ export default {
     handleStatusChange(value) {
       this.users.status_id = value; 
     },
-    changePage(){
+    homeAccount(){
       this.$router.push('./')
     },
   },

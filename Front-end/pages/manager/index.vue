@@ -15,9 +15,6 @@
             </v-toolbar-title>
             <v-spacer />
                 <ul class="nav-links">
-                    <!-- <li>
-                        <nuxt-link to="/">{{$t('Home')}}</nuxt-link>
-                    </li> -->
                     <li>
                         <nuxt-link to="./users">Tài khoản</nuxt-link>
                     </li>

@@ -18,13 +18,13 @@
                         <nuxt-link to="/">{{$t('Home')}}</nuxt-link>
                     </li> -->
                     <li>
-                        <nuxt-link to="./users">Tài khoản</nuxt-link>
+                        <nuxt-link to="/manager/users">Tài khoản</nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link to="./products">Sản phẩm</nuxt-link>
+                        <nuxt-link to="/manager/products">Sản phẩm</nuxt-link>
                     </li>
                     <li>
-                        <nuxt-link to="./tags">Loại hàng</nuxt-link>
+                        <nuxt-link to="/manager/tags">Loại hàng</nuxt-link>
                     </li>
                 </ul>   
             <v-spacer />

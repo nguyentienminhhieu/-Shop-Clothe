@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     update(id){
-      this.$router.push(`./users/${id}`);
+      this.$router.push(`/manager/users/${id}`);
     },
     delete(id){
 
