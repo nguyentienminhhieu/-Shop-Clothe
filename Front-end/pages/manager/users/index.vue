@@ -21,7 +21,7 @@
                         <td>{{ item.status }}</td>
                         <td>
                             <button class='button-update' @click="update(item.id)">Cập nhật</button>
-                            <!-- <button class='button-remove' @click="delete({{item.id}})">Xóa</button> -->
+                            <button class='button-changePassword' @click="changePassword(item.id)">Bảo mật</button>
                         </td>                        
                     </tr>
                 </tbody>
@@ -45,8 +45,13 @@ export default {
     update(id){
       this.$router.push(`/manager/users/${id}`);
     },
-    delete(id){
-
+    changePassword(id){
+      this.$router.push({
+        name: 'manager-users-changePass___en',
+        params: {
+          id: id,
+        }
+      });
     }
   },
   mounted() {
@@ -62,6 +67,9 @@ export default {
 }
 </script>
 <style scoped>
+h2{
+  text-align: center;
+}
 .custom-table {
   /* Kiểu CSS cho table */
   width: 100%;
@@ -99,7 +107,7 @@ export default {
     border-radius: 5px;
 }
 
-.button-remove{
+.button-changePassword{
     padding: 0 5px;
     height: 30px;
     text-align: center;

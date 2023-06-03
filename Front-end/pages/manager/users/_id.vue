@@ -19,8 +19,8 @@
               </select>
               
               <br>
-              <button @click="updateAccount(users.id)" type="submit" class="button-update">Lưu thông tin</button>
-              <button @click="homeAccount()" type="submit" class="button-update">Quay lại</button>
+              <button @click="updateAccount(users.id)" type="submit" class="button-primary">Lưu thông tin</button>
+              <button @click="homeAccount()" type="submit" class="button-primary">Quay lại</button>
             <!-- </form> -->
         </div>
       </div>
@@ -44,7 +44,7 @@ export default {
   methods: {
     updateAccount(id){
       this.$axios
-        .put(`http://127.0.0.1:8000/api/users/update/${id}`,this.users)
+        .put(`http://127.0.0.1:8000/api/users/update`,this.users)
         .then((response) => {
           // console.log(response)
           alert("Cập nhật tài khoản thành công");
@@ -55,9 +55,6 @@ export default {
         });
       },
     // },
-    remove(id){
-
-    },
     handleDepartmentChange(value) {
       this.users.department_id = value; 
     },
@@ -83,7 +80,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .container {
     display: flex;
     flex-direction: column;
@@ -116,7 +113,7 @@ export default {
     outline: none;
     border-color: #66afe9;
   }
-  .button-update {
+  .button-primary {
     margin-top: 20px;
     padding: 8px 12px;
     text-align: center;
