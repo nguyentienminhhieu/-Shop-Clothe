@@ -40,7 +40,6 @@ export default {
     }
   },
   mounted() {
-  // Call the API and get the list of products
   this.$axios
     .get('http://127.0.0.1:8000/api/tags')
     .then((response) => {
