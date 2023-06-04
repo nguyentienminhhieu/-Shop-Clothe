@@ -83,21 +83,24 @@
               password: this.password,
             })
             .then((response) => {
-              // console.log(response);
+              console.log(response);
               // console.log(response.data.users.department_id);
               if(response.data.message == true){
                 alert("Đăng nhập thành công");
-                if(response.data.users.department_id == 1){
-                  // chuyển đến trang quản lý
+
+                const id_session = response.data.users.id;
+                localStorage.setItem('id_session', id_session);
+
+                const permission = response.data.users.department_id;
+                if(permission == 1 || permission == 3){
                   this.$router.push(`../manager/`);
                 }
                 else{
-                  // chuyển đến trang người dùng - trang home
                   this.$router.push(`../`);
                 }
               }else{
                 alert("Thông tin tài khoản mật khẩu không chính xác");
-              }
+              }   
             })
             .catch((error) => {
               console.log(error);

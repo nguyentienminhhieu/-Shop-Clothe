@@ -15,7 +15,7 @@
         > {{$t('Logo')}} </v-toolbar-title
       >
       <v-spacer />
-      <ul class="nav-links">
+        <ul class="nav-links">
             <li>
                 <nuxt-link to="/">Trang chủ</nuxt-link>
             </li>
@@ -60,7 +60,7 @@
         </v-btn>
         <account-menu v-if="showAccountMenu" @close="hideAccountMenu"/>
       </div>
-      <v-btn @click="toggleTheme" icon>
+      <v-btn @click="logOut" icon>
         <v-icon size="20">mdi-brightness-7</v-icon>
       </v-btn>
        <div>
@@ -109,6 +109,16 @@ export default {
       this.$i18n.locale = this.locale;
       this.$router.push(this.switchLocalePath(this.locale))
     },
+    logOut(){
+      this.$axios.post('http://127.0.0.1:8000/api/users/logout')
+      .then(response => {
+        localStorage.removeItem('id_session');
+        // Xóa thông tin đăng nhập khác khỏi local storage nếu có
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
   },
 }
 </script>
