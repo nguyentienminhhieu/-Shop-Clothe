@@ -53,7 +53,7 @@
             this.$axios
             .put(`http://127.0.0.1:8000/api/users/changePassword`, data)
             .then((response) => {
-                console.log(response)
+                // console.log(response)
                 if(response.data.result == true){
                     alert(response.data.message);
                     this.$router.push('/manager/users/')

@@ -47,8 +47,14 @@ export default {
         .put(`http://127.0.0.1:8000/api/users/update`,this.users)
         .then((response) => {
           // console.log(response)
-          alert("Cập nhật tài khoản thành công");
-          this.$router.push('/manager/users/')
+          if(response.data == true){
+            alert("Cập nhật tài khoản thành công");
+            this.$router.push('/manager/users/')
+          }
+          else{
+            alert("Lỗi cập nhật, vui lòng thử lại!");
+            return;
+          }
         })
         .catch((error) => {
           console.log(error);

@@ -2,7 +2,10 @@
     <div>
         <DesktopNavAdmin/>
         <v-container>
-            <h2>Danh sách loại hàng</h2>
+            <div class="header-container">
+                <h2>Danh sách loại hàng</h2>
+                <button @click="formAdd()" class="button-primary">Thêm mới</button>
+            </div>
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -18,7 +21,7 @@
                         <td>{{ item.name }}</td>
                         <td>{{ item.description }}</td>
                         <td>
-                            <button class='button-update' @click="update(item.id)">Cập nhật</button>
+                            <button class='button-primary' @click="update(item.id)">Cập nhật</button>
                             <button class='button-remove' @click="remove(item.id)">Xóa</button>
                         </td>                        
                     </tr>
@@ -41,15 +44,37 @@ export default {
   },
   methods: {
     update(id){
-      this.$router.push(`/manager/users/${id}`);
+        this.$router.push({
+            name: 'manager-tags-edit___en',
+            params: { id: id }
+        });
+        // this.$router.push(`/manager/tags/edit`, id);
     },
     remove(id){
-      
+        this.$axios
+        .delete(`http://127.0.0.1:8000/api/tags/delete/${id}`)
+        .then((response) => {
+            console.log(response)
+            if(response.data > 0){
+                alert("Xóa loại hàng thành công");
+                return;
+            }
+            else{
+                alert("Vui lòng cập nhật sản phẩm thuộc loại hàng này")
+                this.$router.push(`/manager/products/`);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },
+    formAdd(){
+        this.$router.push(`/manager/tags/add`);
     }
   },
   mounted() {
   this.$axios
-    .get('http://127.0.0.1:8000/api/tag')
+    .get('http://127.0.0.1:8000/api/tags')
     .then((response) => {
       this.tags = response.data;
     })
@@ -61,33 +86,40 @@ export default {
 </script>
 <style scoped>
     h2{
-    text-align: center;
+        text-align: center;
+    }
+    .header-container{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     .custom-table {
-    /* Kiểu CSS cho table */
-    width: 100%;
-    border-collapse: collapse;
+        width: 80%;
+        margin: 10px auto;
+        border-collapse: collapse;
     }
 
     .custom-table th,
     .custom-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
     }
 
     .custom-table th {
-    background-color: #f2f2f2;
+        background-color: #f2f2f2;
     }
 
     .custom-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+        background-color: #f9f9f9;
     }
 
     .custom-table tbody tr:hover {
-    background-color: #eaeaea;
+        background-color: #eaeaea;
     }
-    .button-update {
+    .button-primary {
         padding: 0 5px;
         height: 30px;
         text-align: center;
