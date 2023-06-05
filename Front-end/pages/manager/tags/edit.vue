@@ -38,7 +38,7 @@
         },
         methods: {
             updateTag(id){
-                // console.log(id)
+                console.log(id)
                 const data = {
                     id: id,
                     nameTag_new: this.nameTag, 
