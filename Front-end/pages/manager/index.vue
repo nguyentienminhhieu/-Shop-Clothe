@@ -37,6 +37,14 @@
                 <v-icon size="20">mdi-brightness-7</v-icon>
             </v-btn>
 
+            <nuxt-link :to="cookieExists ? './users' : './products'">
+                {{ cookieExists ? 'Users' : 'Products' }}
+            </nuxt-link>
+
+            <v-btn @click="getToken" icon>
+                Hello
+            </v-btn>
+
         </v-app-bar>
     </div>   
     
@@ -47,24 +55,30 @@
 
 
 <script>
-// import  Cookies  from "@/services/cookies.service.js";
-
+import  Cookies  from "@/services/cookies.service.js";
 export default {
     data() {
         return {
-        showAccountMenu: false,
-        locale: this.$i18n.locale,
+            showAccountMenu: false,
+            locale: this.$i18n.locale,
+            cookieExists: false,
         };
     },
     mounted() {
         // Lắng nghe sự kiện click trên toàn bộ trang
         document.addEventListener('click', this.handleClickOutside);
+        if (Cookies.getToken() != null) {
+            this.cookieExists = true;
+        }
     },
     beforeDestroy() {
         // Gỡ bỏ lắng nghe sự kiện click trước khi component bị hủy
         document.removeEventListener('click', this.handleClickOutside);
     },
     methods: {
+        getToken() {
+            console.log('e',Cookies.getToken())
+        },
         toggleAccountMenu() {
             this.showAccountMenu = !this.showAccountMenu;
         },

@@ -1,13 +1,12 @@
 <template>
     <div class="account-menu" :class="{ dark: darkMode }">
-        <p class="menu-link" v-if="user">{{user.department}}</p>
-        <p class="menu-link" v-else>Tài khoản</p>
-        
- 
-        <nuxt-link v-if="user" to="/users/profile" class="menu-link">Thông tin tài khoản</nuxt-link>
-        <nuxt-link v-if="isLoginPage" to="/users/register" class="menu-link">Đăng ký</nuxt-link>
-        <nuxt-link v-if="user && isAuthentication" @click="logoutHandler" class="menu-link">Đăng xuất</nuxt-link>
-        <nuxt-link v-if="!user && !isLoginPage" to="/users/login" class="menu-link">Đăng nhập</nuxt-link>
+      <v-btn @click="register()" icon>
+        Đăng ký
+      </v-btn>
+      <br>
+      <v-btn @click="cookieExists ? logOut() : logIn()" icon>
+        {{ cookieExists ? 'Đăng xuất' : 'Đăng nhập' }}
+      </v-btn>
 
     </div>
 </template>
@@ -17,9 +16,16 @@
 import {mapGetters} from 'vuex'
 import {GET_USER} from '@/store/users'
 import { mapActions } from 'vuex';
+import  Cookies  from "@/services/cookies.service.js";
 // import {logout} from '@/store/login'
 
 export default {
+    data() {
+        return {
+            cookieExists: false,
+        };
+        
+    },
     computed: {
          ...mapGetters({
       user: "getUser",
@@ -36,14 +42,29 @@ export default {
     },    
     mounted() {
       this.$store.dispatch(GET_USER)
-      console.log(this.user);
+      // console.log(this.user);
+      if (Cookies.getToken() != null) {
+            this.cookieExists = true;
+      }
     },
     methods: {
-    ...mapActions(['logout']),
-    logoutHandler() {
-    // this.$store.dispatch('logout'); // Gọi action logout từ Vuex store
-     this.logout();
-   }
+      ...mapActions(['logout']),
+      logoutHandler() {
+        // this.$store.dispatch('logout'); // Gọi action logout từ Vuex store
+        this.logout();
+      },
+      logOut (){
+        // console.log('Token đang đăng nhập',Cookies.getToken());
+        this.logout();
+        this.$router.push(`/users/login`);
+      },
+      logIn (){
+        console.log("User chưa đăng nhập");
+        this.$router.push(`/users/login`);
+      },
+      register () {
+        console.log("Đăng ký");
+      }
     },
 }
 </script>
