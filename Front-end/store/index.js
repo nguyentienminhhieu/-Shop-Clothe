@@ -3,6 +3,10 @@ import Vuex from 'vuex';
 import products from './products';
 import users from './users';
 import cart from './cart'
+import login from './login'
+import alert from './alert'
+// import error from './error'
+
 
 Vue.use(Vuex);
 
@@ -12,6 +16,9 @@ export default function createStore() {
         products,
         users,
         cart,
+        login,
+        alert,
+        // error
       },
     });
   }

@@ -18,6 +18,7 @@
                                   type="text"
                                   v-model="username"
                                   @blur="$v.username.$touch()"
+                                  @keydown.enter.prevent="signupHandler"
                                ></v-text-field>
                                <div v-if="$v.username.$error" class="form-error">
                                 <span v-if="!$v.username.required">Yêu cầu nhập tài khoản</span>
@@ -28,7 +29,7 @@
                                   type="text"
                                   v-model="email"
                                   @blur="$v.email.$touch()"
-    
+                                  @keydown.enter.prevent="signupHandler"
                                ></v-text-field>
                                <div v-if="$v.email.$error" class="form-error">
                                <span v-if="!$v.email.required">Yêu cầu nhập Email</span>
@@ -41,7 +42,7 @@
                                   type="password"
                                   v-model="password"
                                   @blur="$v.password.$touch()"
-                                  
+                                  @keydown.enter.prevent="signupHandler"
                                ></v-text-field>
                                <div v-if="$v.password.$error" class="form-error">
                                   <span v-if="!$v.password.required">Yêu cầu nhập Password</span>
@@ -85,8 +86,8 @@
     </template>
     
     <script>
-    import { required, email, minLength, maxLength, sameAs } from 'vuelidate/lib/validators';
-    
+    import { required, email, minLength, maxLength } from 'vuelidate/lib/validators';
+    import { mapActions } from 'vuex';
     export default {
        name: 'Signup',
        data() {
@@ -111,8 +112,41 @@
         },
        },
        methods: {
+          ...mapActions(['register']),
            signupHandler() {
-             this.$v.$touch();
+           this.$v.$touch();
+      if (!this.$v.$invalid) {
+        // Thực hiện đăng ký
+        const formData = {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        };
+        this.register(formData); // Gọi action register từ Vuex store và truyền formData
+      } else { 
+        alert('Vui lòng nhập đầy đủ thông tin.');
+        console.log('Vui lòng nhập đầy đủ thông tin.');
+         }
+      }
+   }
+}
+    </script>
+    
+    <style>
+    .form-error {
+       color: red;
+    }
+    </style>
+
+
+
+
+
+
+
+
+
+      <!-- this.$v.$touch();
           if (!this.$v.$invalid) {
             // Thực hiện đăng nhập
             const formData = {
@@ -133,36 +167,4 @@
             // eslint-disable-next-line no-console
             alert('Vui lòng nhập đầy đủ thông tin.')
             console.log('Vui lòng nhập đầy đủ thông tin.');
-          } 
-         }
-       }
-       
-    //    data() {
-    //     return {
-    //       username: '',
-    //       password: '',
-    //       email: ''
-    //     }
-    //   },
-    //   methods: {
-    //     async register() {
-    //       try {
-    //         const { data } = await this.$axios.post('/register', {
-    //           username: this.username,
-    //           password: this.password,
-    //           email: this.email
-    //         })
-    //         console.log(data)
-    //       } catch (error) {
-    //         console.error(error)
-    //       }
-    //     }
-    //   }
-    };
-    </script>
-    
-    <style>
-    .form-error {
-       color: red;
-    }
-    </style>
+          }  -->

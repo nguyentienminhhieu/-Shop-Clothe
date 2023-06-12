@@ -19,6 +19,7 @@
                         v-model="email"
                         @blur="$v.email.$touch()"
                         :error-messages="errors.email"
+                         @keydown.enter.prevent="loginHandler"
                       ></v-text-field>
                       <div v-if="$v.email.$error" class="form-error">
                         <span v-if="!$v.email.required"
@@ -36,6 +37,7 @@
                         v-model="password"
                         @blur="$v.password.$touch()"
                         :error-messages="errors.password"
+                        @keydown.enter.prevent="loginHandler"
                       ></v-text-field>
                       <div v-if="$v.password.$error" class="form-error">
                         <span v-if="!$v.password.required"
@@ -61,19 +63,86 @@
     </div>
   </template>
   
-  <script>
-  import { required, email } from 'vuelidate/lib/validators'
-  export default {
-    // name: 'Login',
-    data() {
-      return {
-        email: '',
-        password: '',
-        errors: {},
-      }
+<script>
+import { required, email } from 'vuelidate/lib/validators';
+import { mapActions, mapGetters } from 'vuex';
+import {LOGIN} from '@/store/login';
+export default {
+data() {
+  return {
+    email: '',
+    password: '',
+    errors: {},
+  }
+},
+
+methods: {
+  async loginHandler() {
+    let payload = {
+      email: this.email,
+      password: this.password
+    }
+
+     this.$store.dispatch(LOGIN, payload).then(data => {
+  if (data && data.status) {
+    console.log(1);
+    alert("Đăng nhập thành công");
+    const permission = data.data.user.department_id; // Truy cập department_id từ data.data.user
+    if (permission == 1 || permission == 3) {
+      this.$router.push(`../manager/`);
+    } else {
+      this.$router.push(`../`);
+    }
+    } else {
+    alert("Thông tin tài khoản mật khẩu không chính xác");
+    }
+  });
+
+   
+
+},
+
+   
+},
+  computed: {
+  ...mapGetters({
+      isAuthentication: "isAuthentication",
+    })
+  },
+
+    validations: {
+      email: { required, email },
+      password: { required },
     },
-    methods: {
-      loginHandler() {
+}
+  </script>
+  
+  <style>
+  .form-error {
+    color: red;
+  }
+  </style>
+
+
+
+
+    <!-- this.$store.dispatch(LOGIN, payload).then(data => {
+  if (data && data.status) {
+    console.log(1);
+    alert("Đăng nhập thành công");
+    const permission = data.data.user.department_id; // Truy cập department_id từ data.data.user
+    if (permission == 1 || permission == 3) {
+      this.$router.push(`../manager/`);
+    } else {
+      this.$router.push(`../`);
+    }
+    } else {
+    alert("Thông tin tài khoản mật khẩu không chính xác");
+    }
+  }); -->
+
+<!-- 
+loginHandler() {
         this.$v.$touch()
         if (!this.$v.$invalid) {
 
@@ -109,18 +178,24 @@
         } else {
           alert('Vui lòng nhập đủ thông tin!')
         }
-      },
-    },
-    validations: {
-      email: { required, email },
-      password: { required },
-    },
-  }
-  </script>
-  
-  <style>
-  .form-error {
-    color: red;
-  }
-  </style>
-  
+      }, -->
+
+
+
+       <!-- this.$store.dispatch(LOGIN, payload).then(data => {
+      if (data && data.status) {
+     console.log(data.data.access_token);
+      commit('setAuthentication', true);
+      Cookies.saveToken(data.data.access_token);
+      Cookies.saveRefreshToken(data.data.refresh_token); // Lưu refresh token vào lưu trữ
+       alert("Đăng nhập thành công");
+      const permission = data.data.user.department_id; // Truy cập department_id từ data.data.user
+    if (permission == 1 || permission == 3) {
+      this.$router.push(`../manager/`);
+    } else {
+      this.$router.push(`../`);
+    }
+    } else {
+    alert("Thông tin tài khoản mật khẩu không chính xác");
+    }
+  }); -->

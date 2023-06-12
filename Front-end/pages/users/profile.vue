@@ -4,17 +4,6 @@
     <DesktopNav/>
         <div class="profile">
     <h1 class="profile-title">Profile</h1>
-    <div class="profile-info">
-      <div class="profile-item">
-        <span class="profile-label">Name:</span>
-        <!-- <span class="profile-value">{{ customer.name }}</span> -->
-      </div>
-      <div class="profile-item">
-        <span class="profile-label">Email:</span>
-        <!-- <span class="profile-value">{{ customer.email }}</span> -->
-      </div>
-      <!-- Các thông tin khác của khách hàng -->
-    </div>
         </div>
     <Footer/>
     <ScrollTop />
@@ -24,14 +13,37 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
+import {GET_USER} from '@/store/users' 
 export default {
+  // async created() {
+  //   await this.$store.dispatch('fetchUsers')
+  // },
+  // computed: {
+  //   ...mapGetters({
+  //     user: 'product/getUser',
+  //   }),
+  // },
+  //  computed: {
+  //   ...mapGetters('users', ['getUsers']),
+  // },
+  // created() {
+  //   this.fetchUsers();
+  // },
+  // methods: {
+  //   async fetchUsers() {
+  //     await this.$store.dispatch('users/fetchUsers');
+  //   },
+  // },
   computed: {
-    ...mapGetters({
-      user: 'product/getUser',
+        ...mapGetters({
+      user: "getUsers",
     }),
   },
-};
+   async created() {
+    await this.$store.dispatch(`${GET_USER}`)
+    console.log(this.user);
+  },
+}
 </script>
 <style scoped>
 .profile {

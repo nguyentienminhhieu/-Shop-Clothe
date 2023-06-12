@@ -36,6 +36,7 @@
             <v-btn @click="toggleTheme" icon>
                 <v-icon size="20">mdi-brightness-7</v-icon>
             </v-btn>
+
         </v-app-bar>
     </div>   
     
@@ -46,6 +47,8 @@
 
 
 <script>
+// import  Cookies  from "@/services/cookies.service.js";
+
 export default {
     data() {
         return {
