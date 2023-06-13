@@ -28,7 +28,6 @@ export default {
         return {
             cookieExists: false,
         };
-        
     },
     computed: {
          ...mapGetters({
@@ -69,7 +68,6 @@ export default {
       },
       profile() {
         this.$router.push('/users/profile');
-       
       }
     },
 }

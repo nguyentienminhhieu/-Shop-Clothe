@@ -80,9 +80,9 @@ export default {
     } 
   },
   methods: {
-  goToProduct(productId) {
-    this.$router.push(`/products/${productId}`);
-  },
+    goToProduct(productId) {
+      this.$router.push(`/products/${productId}`);
+    },
   },  
 }
 </script>

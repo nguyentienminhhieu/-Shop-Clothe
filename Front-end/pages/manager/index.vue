@@ -37,11 +37,11 @@
                 <v-icon size="20">mdi-brightness-7</v-icon>
             </v-btn>
 
-            <nuxt-link :to="cookieExists ? './users' : './products'">
+            <!-- <nuxt-link :to="cookieExists ? './users' : './products'">
                 {{ cookieExists ? 'Users' : 'Products' }}
-            </nuxt-link>
+            </nuxt-link> -->
 
-            <v-btn @click="getToken" icon>
+            <v-btn @click="getUserH" icon>
                 Hello
             </v-btn>
 
@@ -76,8 +76,17 @@ export default {
         document.removeEventListener('click', this.handleClickOutside);
     },
     methods: {
-        getToken() {
-            console.log('e',Cookies.getToken())
+        getUserH() {
+            // console.log('e',Cookies.getUser())
+            let id = Cookies.getUser();
+            this.$axios
+            .get(`http://127.0.0.1:8000/api/users/search/${id}`)
+            .then((response) => {
+               console.log(response);
+            })
+            .catch((error) => {
+               console.log(error);
+            }); 
         },
         toggleAccountMenu() {
             this.showAccountMenu = !this.showAccountMenu;

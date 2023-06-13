@@ -64,16 +64,17 @@ export default {
               password: this.password,
           })
           .then((response) => {
+              // console.log(response);
               if(response.data.status == 200){
                 alert("Đăng nhập thành công");
 
                 // console.log('response.data.data.access_token',  response.data.data.access_token)
 
                 Cookies.saveToken(response.data.data.access_token)
-                Cookies.saveUser(response.data.data.user); // Lưu thông tin người dùng
+                Cookies.saveUser(response.data.data.user.id); // Lưu thông tin người dùng
                 Cookies.saveData('authentication', true)
 
-                const permission = response.data.data.user.department_id; // Truy cập department_id từ data.data.user
+                const permission = response.data.data.user.role; // Truy cập department_id từ data.data.user
                 if (permission == 1 || permission == 3) {
                   this.$router.push(`../manager/`);
                 } else {

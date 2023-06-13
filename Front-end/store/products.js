@@ -71,20 +71,20 @@ const getters = {
         return state.product_detail;
     },
     productHandbags(state) {
-      return state.products.filter(product => product.id_tag == 3)
+      return state.products.filter(product => product.tag_id == 3)
     },
     // Shoes
     productShoes(state) {
-      return state.products.filter(product => product.id_tag == 4)
+      return state.products.filter(product => product.tag_id == 2)
     },
     productClothes(state) {
-      return state.products.filter(product => product.id_tag == 6)
+      return state.products.filter(product => product.tag_id == 1)
     },
     productPerfume(state) {
-      return state.products.filter(product => product.id_tag == 1)
+      return state.products.filter(product => product.tag_id == 4)
     },
     productWatch(state) {
-      return state.products.filter(product => product.id_tag == 7)
+      return state.products.filter(product => product.tag_id == 5)
     },
 }
 
