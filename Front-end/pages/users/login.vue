@@ -70,6 +70,7 @@ export default {
                 // console.log('response.data.data.access_token',  response.data.data.access_token)
 
                 Cookies.saveToken(response.data.data.access_token)
+                Cookies.saveUser(response.data.data.user); // Lưu thông tin người dùng
                 Cookies.saveData('authentication', true)
 
                 const permission = response.data.data.user.department_id; // Truy cập department_id từ data.data.user

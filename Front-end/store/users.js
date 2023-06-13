@@ -16,22 +16,12 @@ export const mutations = {
     },
 }
 export const actions = {
-    // async [GET_USERS]({ commit }, payload) {
-    //     try {
-    //       const response = await axios.get('http://127.0.0.1:8000/api/users');
-    //       const users = response.data;
-    //       commit('setUsers', users)
-    //       return users;
-    //     } catch (error) {
-    //       console.log(error);
-    //       throw error;
-    //     }
-    //   },
+    
       async [GET_USER]({ commit }, payload) {
         return new Promise((resolve, reject) => {
           this.$get(GET_USER, payload).then(
             (response) => {
-                console.log(response);
+                // console.log(response);
                 let data = response.data
               commit('setUsers', data)
               resolve(data);
@@ -64,6 +54,7 @@ export const actions = {
       // Xử lý lỗi khi gửi yêu cầu đăng ký (ví dụ: hiển thị thông báo lỗi)
     }
   },
+
 }
 
 export const getters = {

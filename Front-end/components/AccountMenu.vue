@@ -1,10 +1,15 @@
 <template>
     <div class="account-menu" :class="{ dark: darkMode }">
-      <v-btn @click="register()" icon>
+      <!-- <v-btn @click="register()" icon>
         Đăng ký
       </v-btn>
+      <br> -->
+      <v-btn @click="cookieExists ? profile() : register()" class="menu-link" text>
+         {{ cookieExists ? 'Thông tin tài khoản' : 'Đăng ký' }}
+      </v-btn>
       <br>
-      <v-btn @click="cookieExists ? logOut() : logIn()" icon>
+
+      <v-btn @click="cookieExists ? logOut() : logIn()" class="menu-link" text>
         {{ cookieExists ? 'Đăng xuất' : 'Đăng nhập' }}
       </v-btn>
 
@@ -17,7 +22,6 @@ import {mapGetters} from 'vuex'
 import {GET_USER} from '@/store/users'
 import { mapActions } from 'vuex';
 import  Cookies  from "@/services/cookies.service.js";
-// import {logout} from '@/store/login'
 
 export default {
     data() {
@@ -49,21 +53,23 @@ export default {
     },
     methods: {
       ...mapActions(['logout']),
-      logoutHandler() {
-        // this.$store.dispatch('logout'); // Gọi action logout từ Vuex store
-        this.logout();
-      },
-      logOut (){
+      logOut(){
         // console.log('Token đang đăng nhập',Cookies.getToken());
         this.logout();
-        this.$router.push(`/users/login`);
+        this.$router.push('/users/login');
       },
-      logIn (){
+      logIn(){
         console.log("User chưa đăng nhập");
-        this.$router.push(`/users/login`);
+        this.$router.push('/users/login');
       },
-      register () {
+      register() {
         console.log("Đăng ký");
+        this.$router.push('/users/register');
+
+      },
+      profile() {
+        this.$router.push('/users/profile');
+       
       }
     },
 }
@@ -89,6 +95,9 @@ export default {
   padding: 10px 20px;
   margin-bottom: 10px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .menu-link:hover {
@@ -98,21 +107,18 @@ export default {
 .account-menu.dark {
   /* CSS cho chế độ tối */
   background-color: #333;
-  color: #fff ;
+  color: #fff;
   border-color: #666;
 }
 
-
 .menu-link.dark {
   /* CSS cho chế độ tối */
-  color: #fff ;
-
+  color: #fff;
 }
 
 .menu-link.dark:hover {
   /* CSS cho chế độ tối khi hover */
   background-color: #444;
   color: #000;
-
 }
 </style>
