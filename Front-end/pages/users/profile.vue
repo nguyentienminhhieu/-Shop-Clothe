@@ -6,22 +6,20 @@
           <h1 class="profile-title">Profile</h1>
         </div>
 
-        <table class="custom-table">
-          <thead>
-              <tr>
-                  <!-- <th>ID</th> -->
-                  <th>User Name</th>
-                  <th>Email</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr v-for="item in user" :key="item.id">
-                  <!-- <td>{{ item.id }}</td> -->
-                  <td>{{ item.username }}</td>
-                  <td>{{ item.email }}</td>
-              </tr>
-          </tbody>
-      </table>
+    <div class="profile-info" v-if="user !== null">
+      <div class="info-item">
+        <label class="info-label">ID:</label>
+        <div class="info-value">{{ user.id }}</div>
+      </div>
+      <div class="info-item">
+        <label class="info-label">User Name:</label>
+        <div class="info-value">{{ user.username }}</div>
+      </div>
+      <div class="info-item">
+        <label class="info-label">Email:</label>
+        <div class="info-value">{{ user.email }}</div>
+      </div>
+    </div>
 
     <Footer/>
     <ScrollTop />
@@ -30,8 +28,6 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
-import {GET_USER} from '@/store/users'
 import  Cookies  from "@/services/cookies.service.js";
 export default {
   data() {
@@ -39,15 +35,10 @@ export default {
         user: null,
       } 
   },
-  methods: {
-    async fetchUsers() {
-      await this.$store.dispatch('users/fetchUsers');
-    },
-  },
   mounted() {
-    // let id = Cookies.getUser();
+    let id = Cookies.getUser();
     this.$axios
-      .get(`http://127.0.0.1:8000/api/users/search/2`)
+      .get(`http://127.0.0.1:8000/api/users/search/${id}`)
       .then((response) => {
           console.log(response);
           this.user = response.data;
@@ -74,18 +65,20 @@ export default {
 .profile-info {
   display: flex;
   flex-direction: column;
+  margin-left: 200px;
 }
 
-.profile-item {
+.info-item {
+  display: flex;
   margin-bottom: 10px;
 }
 
-.profile-label {
+.info-label {
   font-weight: bold;
   margin-right: 5px;
 }
 
-.profile-value {
+.info-value {
   font-style: italic;
 }
 </style>
