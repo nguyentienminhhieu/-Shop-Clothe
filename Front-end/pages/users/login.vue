@@ -17,6 +17,7 @@
                       label="Email"
                       type="text"
                       v-model="email"
+                      @keydown.enter.prevent="loginHandler"
                     ></v-text-field>
                     <v-text-field
                       id="password"
@@ -24,6 +25,7 @@
                       label="Password"
                       type="password"
                       v-model="password"
+                      @keydown.enter.prevent="loginHandler"
                     ></v-text-field>
 
                   </v-form>

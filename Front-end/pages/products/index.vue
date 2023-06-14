@@ -51,7 +51,7 @@
                   class="mb-2"
                   color="yellow darken-2"
                   background-color="grey lighten-1"
-                  :value="p.ratings"
+                  :value="p.rate"
                   dense
                   size="20"
                  ></v-rating>
@@ -91,7 +91,7 @@ export default {
         const s = this.search.toLowerCase()
         const n = p.name.toLowerCase()
         const price = p.price.toString()
-        const r = p.ratings.toString()
+        const r = p.rate.toString()
         return n.includes(s) || price.includes(s) || r.includes(s)
       })
     },
