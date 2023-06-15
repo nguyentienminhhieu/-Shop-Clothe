@@ -10,10 +10,6 @@
                     <input type="text" id="nameTag" v-model="nameTag">
                 </div>
                 <div class="item-form">
-                    <label for="descriptionTag">Mô tả:</label>
-                    <input type="text" id="descriptionTag" v-model="descriptionTag">
-                </div>
-                <div class="item-form">
                     <button @click="addTag()" type="submit" class="button-primary">Thêm</button>
                     <button @click="homeTag()" type="submit" class="button-primary">Quay lại</button>
                 </div>
@@ -31,19 +27,17 @@
         data() {
             return {
                 nameTag: '',
-                descriptionTag: '',
             };
         },
         methods: {
             addTag(){
-                const data ={
+                const data = {
                     nameTag: this.nameTag,
-                    descriptionTag: this.descriptionTag,
                 }
                 this.$axios
-                .post(`http://127.0.0.1:8000/api/tags/add`, data)
+                .post(`http://127.0.0.1:8000/api/tags/addTags`, data)
                 .then((response) => {
-                    // console.log(response.data)
+                    console.log(response.data)
                     if(response.data > 0){
                         alert("Thêm loại hàng thành công");
                         this.$router.push('/manager/tags/')

@@ -17,7 +17,7 @@
                     <tr v-for="item in users" :key="item.id">
                         <td>{{ item.id }}</td>
                         <td>{{ item.email }}</td>
-                        <td>{{ item.department }}</td>
+                        <td>{{ item.role }}</td>
                         <td>{{ item.status }}</td>
                         <td>
                             <button class='button-update' @click="update(item.id)">Cập nhật</button>

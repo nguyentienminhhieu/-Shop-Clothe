@@ -77,7 +77,7 @@ export default {
                 Cookies.saveData('authentication', true)
 
                 const permission = response.data.data.user.role; // Truy cập department_id từ data.data.user
-                if (permission == 1 || permission == 3) {
+                if (permission == 1) {
                   this.$router.push(`../manager/`);
                 } else {
                   this.$router.push(`../`);

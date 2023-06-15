@@ -4,21 +4,14 @@
         <div class="container">
           <div class="content">
             <h2>Thông tin Loại hàng</h2>
-            <!-- <form > -->
                 <div class="item-form">
                     <label for="nameTag">Tên loại hàng:</label>
-                    <!-- <p>{{tags.name}}</p> -->
                     <input type="text" id="nameTag" v-model="nameTag">
-                </div>
-                <div class="item-form">
-                    <label for="descriptionTag">Mô tả:</label>
-                    <input type="text" id="descriptionTag" v-model="descriptionTag">
                 </div>
                 <div class="item-form">
                     <button @click="updateTag(tags.id)" type="submit" class="button-primary">Lưu thông tin</button>
                     <button @click="homeTag()" type="submit" class="button-primary">Quay lại</button>
                 </div>
-              <!-- </form> -->
           </div>
         </div>
   
@@ -42,7 +35,6 @@
                 const data = {
                     id: id,
                     nameTag_new: this.nameTag, 
-                    descriptionTag_new: this.descriptionTag,
                 };
                 this.$axios
                 .put(`http://127.0.0.1:8000/api/tags/update`, data)

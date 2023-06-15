@@ -11,7 +11,6 @@
                     <tr>
                         <th>Mã loại hàng</th>
                         <th>Tên loại hàng</th>
-                        <th>Mô tả</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -19,7 +18,6 @@
                     <tr v-for="item in tags" :key="item.id">
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.description }}</td>
                         <td>
                             <button class='button-primary' @click="update(item.id)">Cập nhật</button>
                             <button class='button-remove' @click="remove(item.id)">Xóa</button>
@@ -48,7 +46,6 @@ export default {
             name: 'manager-tags-edit___en',
             params: { id: id }
         });
-        // this.$router.push(`/manager/tags/edit`, id);
     },
     remove(id){
         this.$axios
@@ -57,7 +54,8 @@ export default {
             console.log(response)
             if(response.data > 0){
                 alert("Xóa loại hàng thành công");
-                return;
+                // this.$router.push('/manager/tags/');
+                location.reload();
             }
             else{
                 alert("Vui lòng cập nhật sản phẩm thuộc loại hàng này")
