@@ -1,9 +1,5 @@
 <template>
     <div class="account-menu" :class="{ dark: darkMode }">
-      <!-- <v-btn @click="register()" icon>
-        Đăng ký
-      </v-btn>
-      <br> -->
       <v-btn @click="cookieExists ? profile() : register()" class="menu-link" text>
          {{ cookieExists ? 'Thông tin tài khoản' : 'Đăng ký' }}
       </v-btn>
@@ -45,7 +41,6 @@ export default {
     },    
     mounted() {
       this.$store.dispatch(GET_USER)
-      // console.log(this.user);
       if (Cookies.getToken() != null) {
             this.cookieExists = true;
       }
@@ -53,7 +48,6 @@ export default {
     methods: {
       ...mapActions(['logout']),
       logOut(){
-        // console.log('Token đang đăng nhập',Cookies.getToken());
         this.logout();
         this.$router.push('/users/login');
       },

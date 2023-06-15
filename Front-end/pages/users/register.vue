@@ -107,7 +107,7 @@
          this.$v.$touch();
          if (!this.$v.$invalid) {
             this.$axios
-            .post('http://127.0.0.1:8000/api/users/register',
+            .post('http://127.0.0.1:8000/api/auth/register',
             {
                username: this.username,
                email: this.email,
@@ -115,12 +115,13 @@
             })
             .then((response) => {
                console.log(response);
-               if(response.data == true){
-                  alert('Đăng ký thành công');
+               if(response.data > 0){
+                  alert('Đăng ký thành công! Vui lòng đăng nhập lại');
                   this.$router.push(`/users/login`);
                }
                else {
-                  alert('Đăng ký thất bại');
+                  alert('Đăng ký thất bại. Vui lòng thử lại');
+                  this.$router.push(`/users/login`);
                }
             })
             .catch((error) => {

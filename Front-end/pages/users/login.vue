@@ -60,29 +60,25 @@ export default {
   methods: {
       loginHandler() {
           this.$axios
-          .post('http://127.0.0.1:8000/api/users/login',
+          .post('http://127.0.0.1:8000/api/auth/login',
           {
               email: this.email,
               password: this.password,
           })
           .then((response) => {
-              // console.log(response);
-              if(response.data.status == 200){
+              console.log(response);
+              if(response.status == 200){
                 alert("Đăng nhập thành công");
-
-                // console.log('response.data.data.access_token',  response.data.data.access_token)
-
-                Cookies.saveToken(response.data.data.access_token)
-                Cookies.saveUser(response.data.data.user.id); // Lưu thông tin người dùng
+                Cookies.saveToken(response.data.access_token)
+                Cookies.saveUser(response.data.user.id);
                 Cookies.saveData('authentication', true)
 
-                const permission = response.data.data.user.role; // Truy cập department_id từ data.data.user
-                if (permission == 1) {
+                if (response.data.user.role == 1) {
                   this.$router.push(`../manager/`);
                 } else {
                   this.$router.push(`../`);
                 }
-              }else{
+              } else {
                   alert("Thông tin tài khoản mật khẩu không chính xác");
               }
           })

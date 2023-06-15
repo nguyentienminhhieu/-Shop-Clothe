@@ -34,7 +34,7 @@
                 console.log(id)
                 const data = {
                     id: id,
-                    nameTag_new: this.nameTag, 
+                    nameTag: this.nameTag, 
                 };
                 this.$axios
                 .put(`http://127.0.0.1:8000/api/tags/update`, data)
@@ -50,7 +50,6 @@
                     }
                 })
                 .catch((error) => {
-                    // console.log(error);
                     alert("Lỗi cập nhật, vui lòng thử lại");
                     return;
                 });

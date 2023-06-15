@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_USER = '/user';
-export const POST_USER = '/users/register';
+export const POST_USER = '/auth/register';
 
 export const state = () => ({
     user: {},

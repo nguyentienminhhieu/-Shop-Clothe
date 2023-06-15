@@ -1,7 +1,7 @@
 import axios from "axios";
 import  Cookies  from "@/services/cookies.service.js";
 
-export const LOGIN = '/users/login';
+export const LOGIN = '/auth/login';
 
 export const state = () => ({
   isLoggedIn: false,
