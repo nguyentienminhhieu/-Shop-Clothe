@@ -15,7 +15,7 @@
               class="mb-2"
               color="yellow darken-2"
               background-color="grey lighten-1"
-              :value="product_detail.ratings"
+              :value="product_detail.rate"
               dense
               size="20"
             ></v-rating>
@@ -44,7 +44,8 @@
              Giá: ${{ product_detail.price }}
           </p>
           <v-btn
-            @click="$store.commit('cart/AddToCart', product)"
+            
+            @click="addToCart(product_detail)"
             min-height="45"
             min-width="170"
             class="text-capitalize"
@@ -80,6 +81,10 @@ export default {
     } 
   },
   methods: {
+    addToCart(product) {
+      // this.$router.push('/products')
+      this.$store.commit('cart/AddToCart', product)
+    },
     goToProduct(productId) {
       this.$router.push(`/products/${productId}`);
     },

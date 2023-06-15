@@ -41,9 +41,9 @@
                 {{ cookieExists ? 'Users' : 'Products' }}
             </nuxt-link> -->
 
-            <v-btn @click="getUserH" icon>
+            <!-- <v-btn @click="getUserH" icon>
                 Hello
-            </v-btn>
+            </v-btn> -->
 
         </v-app-bar>
     </div>   

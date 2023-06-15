@@ -2,7 +2,6 @@ import axios from "axios";
 import  Cookies  from "@/services/cookies.service.js";
 
 export const LOGIN = '/users/login';
-export const LOGOUT = '/users/logout';
 
 export const state = () => ({
   isLoggedIn: false,
@@ -37,7 +36,9 @@ export const actions = {
               console.log(data.data.access_token);
               commit('setAuthentication', true);
               Cookies.saveToken(data.data.access_token)
+              // Cookies.saveRefreshToken(data.data.refresh_token); // Lưu refresh token
               Cookies.saveData('authentication', true)
+              
             }
           resolve(data);
         }).catch(error => {
@@ -45,32 +46,14 @@ export const actions = {
       })
     });
   },
-  // async [LOGOUT]({ commit }, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     this.$post(LOGOUT, payload).then(
-  //       (response) => {
-  //         const data = response.data;
-  //         if (data && data.status) {
-  //           // commit('setLoggedIn', false);
-  //           commit('setUser', null);
-  //           Cookies.destroyUser();
-  //           Cookies.destroyToken();
-  //           commit('setAuthentication', false);
-  //           Cookies.saveData('authentication', false);
-  //         }
-  //         resolve(data);
-  //       }).catch(error => {
-  //       reject(error);
-  //     })
-  //   });
-  // },
-  
+
 
   logout({ commit }) {
     commit('setLoggedIn', false);
     commit('setUser', null);
     Cookies.destroyUser(); // Xóa thông tin người dùng khỏi lưu trữ
     Cookies.destroyToken(); // Xóa token khỏi lưu trữ
+    // Cookies.destroyRefreshToken(); // Xóa refresh token
     commit('setAuthentication', false); // Đặt lại giá trị authentication
     Cookies.saveData('authentication', false); // Lưu giá trị authentication
   }

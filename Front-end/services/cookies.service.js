@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 const TOKEN = "token";
 const USER = "user";
 const EMAIL = "email";
+// const REFRESH_TOKEN = "refresh_token"; // Thêm khai báo cho refresh token
 
 export const getToken = () => {
   return Cookies.get(TOKEN);
@@ -49,6 +50,19 @@ export const saveEmail = user => {
 export const destroyEmail = () => {
   Cookies.remove(EMAIL);
 };
+// Thêm phần xử lý cho refresh token
+// export const getRefreshToken = () => {
+//   return Cookies.get(REFRESH_TOKEN);
+// };
+
+// export const saveRefreshToken = (refreshToken) => {
+//   Cookies.remove(REFRESH_TOKEN);
+//   Cookies.set(REFRESH_TOKEN, refreshToken, { expires: 60 * 60 * 24 });
+// };
+
+// export const destroyRefreshToken = () => {
+//   Cookies.remove(REFRESH_TOKEN);
+// };
 
 export default {
   getToken,
@@ -61,5 +75,8 @@ export default {
   getUser,
   getEmail,
   saveEmail,
-  destroyEmail
+  destroyEmail,
+  // getRefreshToken,
+  // saveRefreshToken,
+  // destroyRefreshToken,
 };
