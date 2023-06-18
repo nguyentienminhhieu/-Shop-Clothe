@@ -39,7 +39,6 @@
                 this.$axios
                 .put(`http://127.0.0.1:8000/api/tags/update`, data)
                 .then((response) => {
-                    console.log(response.data)
                     if(response.data > 0){
                         alert("Cập nhật loại hàng thành công");
                         this.$router.push('/manager/tags/')

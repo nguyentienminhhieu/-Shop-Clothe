@@ -43,7 +43,7 @@ export default {
   methods: {
     update(id){
         this.$router.push({
-            name: 'manager-tags-edit___en',
+            name: 'manager-tags-edit___en___en___en',
             params: { id: id }
         });
     },
@@ -54,7 +54,6 @@ export default {
             console.log(response)
             if(response.data > 0){
                 alert("Xóa loại hàng thành công");
-                // this.$router.push('/manager/tags/');
                 location.reload();
             }
             else{

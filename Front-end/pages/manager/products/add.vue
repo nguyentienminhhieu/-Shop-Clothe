@@ -1,106 +1,114 @@
 <template lang="">
     <div>
       <DesktopNavAdmin/>
-   <div class="container">
-      <div class="content">
-        <h2>Thêm Sản phẩm</h2>
-        <div class="item-form">
-          <label for="name">Tên sản phẩm:</label>
-          <input type="text" id="name" v-model="product.name">
-        </div>
-        <div class="item-form">
-          <label for="image">Ảnh sản phẩm:</label>
-          <input  @change="onImageChange" id="image" type="file">
-        </div>
-        <div class="item-form">
-          <label for="quantity">Số lượng:</label>
-          <input type="number" id="quantity" v-model="product.quantity">
-        </div>
-        <div class="item-form">
-          <label for="price">Giá:</label>
-          <input type="number" id="price" v-model="product.price">
-        </div>
-        <div class="item-form">
-          <label for="description">Mô tả:</label>
-          <input type="text" id="description" v-model="product.description">
-        </div>
-        <div class="item-form">
-          <label for="rate">Đánh giá:</label>
-          <input type="number" id="rate" v-model="product.rate">
-        </div>
-        <div class="item-form">
-          <label for="tag_id">Tag ID:</label>
-          <input type="number" id="tag_id" v-model="product.tag_id">
-        </div>
-        <div class="item-form">
-          <label for="onSale">Đang giảm giá:</label>
-          <input type="number" id="onSale" v-model="product.onSale">
-        </div>
-        <div class="item-form">
-          <label for="news">Sản phẩm mới:</label>
-          <input type="number" id="news" v-model="product.news">
-        </div>
-        <div class="item-form">
-          <button @click="addProduct" type="submit" class="button-primary">Thêm</button>
-          <button @click="goBack" type="submit" class="button-primary">Quay lại</button>
+      <div class="container">
+        <div class="content">
+          <h2>Thêm Sản phẩm</h2>
+          <div class="item-form">
+            <label for="name">Tên sản phẩm:</label>
+            <input type="text" id="name" v-model="product.name">
+          </div>
+          <div class="item-form">
+            <label for="image">Ảnh sản phẩm:</label>
+            <!-- <input  @change="onImageChange" id="image" type="file"> -->
+            <input type="text" id="image" v-model="product.image">
+          </div>
+          <div class="item-form">
+            <label for="quantity">Số lượng:</label>
+            <input type="number" id="quantity" v-model="product.quantity">
+          </div>
+          <div class="item-form">
+            <label for="price">Giá:</label>
+            <input type="number" id="price" v-model="product.price">
+          </div>
+          <div class="item-form">
+            <label for="description">Mô tả:</label>
+            <input type="text" id="description" v-model="product.description">
+          </div>
+          <div class="item-form">
+            <label for="tag">Loại hàng:</label>
+            <select name="tag_product" id="tag" v-model="product.tag_id">
+              <option v-for="tag in tags" :key="tag.id" :value="tag.id">{{ tag.name }}</option>
+            </select>
+          </div>
+          <div class="item-form">
+            <label for="onSale">Đang giảm giá:</label>
+            <input type="radio" id="onSale" value="1" v-model="product.onSale"> Có
+            <input type="radio" id="onSale" value="0" v-model="product.onSale"> Không
+          </div>
+          <div class="item-form">
+            <label for="news">Sản phẩm mới:</label>
+            <input type="radio" id="news" value="1" v-model="product.news"> Có
+            <input type="radio" id="news" value="0" v-model="product.news"> Không
+          </div>
+          <div class="item-form">
+            <button @click="addProduct" type="submit" class="button-primary">Thêm</button>
+            <button @click="goBack" type="submit" class="button-primary">Quay lại</button>
+          </div>
         </div>
       </div>
-    </div>
-  
       <Footer/>
       <ScrollTop />
-    </div>
+  </div>
 </template>
   
 <script>
     export default {
        data() {
          return {
+            tags: null,
             product: {
-                id: null,
                 name: "",
                 image: null, 
                 quantity: 0,
                 price: 0,
                 description: "",
-                rate: 0,
-                tag_id: 0,
+                tag_id: 1,
                 onSale: 0,
                 news: 0,
-                created_at: null,
-                updated_at: null,
             },
         };
     },
-        methods: {
-            onImageChange(event) {
-                const file = event.target.files[0];
-                this.product.image = file;
-            },
-            addProduct(){
-                const data = {
-                    product: this.product,
-                }
-                this.$axios
-                .post(`http://127.0.0.1:8000/api/products/addProducts`, data)
-                .then((response) => {
-                    console.log(response.data)
-                    if(response.data > 0){
-                        alert("Thêm loại hàng thành công");
-                        this.$router.push('/manager/products/')
-                    }
-                })
-                .catch((error) => {
-                    // console.log(error);
-                    alert("Lỗi thêm loại hàng, vui lòng thử lại");
-                    return;
-                });
-            },
-            // },
-            goBack(){
-                this.$router.push('./')
-            },
-        },
+      methods: {
+          onImageChange(event) {
+              const file = event.target.files[0].name;
+              // console.log(file);
+              this.product.image = file;
+          },
+          addProduct(){
+              const data = {
+                  product: this.product,
+              }
+              this.$axios
+              .post(`http://127.0.0.1:8000/api/products/add`, data)
+              .then((response) => {
+                  console.log(response)
+                  if(response.data > 0){
+                      alert("Thêm loại hàng thành công");
+                      this.$router.push('/manager/products/')
+                  }
+              })
+              .catch((error) => {
+                  // console.log(error);
+                  alert("Lỗi thêm loại hàng, vui lòng thử lại");
+                  return;
+              });
+          },
+          // },
+          goBack(){
+              this.$router.push('./')
+          },
+      },
+      mounted() {
+        this.$axios
+          .get('http://127.0.0.1:8000/api/tags')
+          .then((response) => {
+            this.tags = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
     }
 </script>
   

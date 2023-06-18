@@ -15,10 +15,13 @@
             <v-card-text>
               <p>Mã sản phẩm: {{ item.id }}</p>
               <p>Giá: {{ item.price }}</p>
-              <p>Số lượng: {{ item.quantity }}</p>
+              <!-- <p>Số lượng: {{ item.quantity }}</p> -->
+              <p>Số lượng: {{ item.quantity > 0 ? item.quantity : 'Đã hết hàng' }}</p>
+
               <p>Mô tả: {{ item.description }}</p>
               <p>Loại hàng: {{ item.tag_name }}</p>
-              <p>Giảm giá: {{ item.discount }}%</p>
+              <p>{{ item.onSale === 1 ? 'Có' : 'Không' }} giảm giá</p>
+              <p>{{ item.news === 1 ? 'Sản phẩm mới' : '' }}</p>
             </v-card-text>
             <v-card-actions>
               <v-btn @click="updateProduct(item.id)" text color="primary">
@@ -46,8 +49,10 @@ export default {
   },
   methods: {
     updateProduct(productId) {
-      this.$router.push(`/manager/products/edit`);
-      console.log('Cập nhật sản phẩm với ID:', productId);
+      this.$router.push({
+            name: 'manager-products-edit___en___en___en',
+            params: { id: productId }
+        });
     },
     removeProduct(productId) {
       console.log('Thay đổi mật khẩu sản phẩm với ID:', productId);
