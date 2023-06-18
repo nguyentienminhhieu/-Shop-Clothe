@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_PRODUCTS = 'products';
-export const GET_PRODUCTS_ID = 'products/searchByID'
+export const GET_PRODUCTS_ID = 'products/searchByID/'
 
 
 const state = () => ({

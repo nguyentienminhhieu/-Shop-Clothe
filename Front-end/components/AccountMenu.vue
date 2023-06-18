@@ -58,7 +58,6 @@ export default {
       register() {
         console.log("Đăng ký");
         this.$router.push('/users/register');
-
       },
       profile() {
         this.$router.push('/users/profile');

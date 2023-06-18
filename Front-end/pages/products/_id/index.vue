@@ -64,32 +64,24 @@
 
 
 <script>
-import {mapGetters} from 'vuex'
-import {GET_PRODUCTS_ID} from '@/store/products' 
 export default {
   async created() {
-    await this.$store.dispatch(`${GET_PRODUCTS_ID}`, this.$route.params.id)
-  //        try {
-  //           const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${this.$route.params.id}`)
-  //           this.product_detail = response.data;
-  //       } catch (error) {
-  //           console.log(error);
-  //       }
-  },
-    computed: {
-        ...mapGetters({
-      product_detail: "getProductID",
-    }),
+    this.$axios
+      .get(`http://127.0.0.1:8000/api/products/searchByID/${this.$route.params.id}`)
+      .then((response) => {
+          this.product_detail = response.data;
+      })
+      .catch((error) => {
+          console.log(error);
+      });
   },
   data() {
     return {
-      product: null,
-      // product_detail: null,
+      product_detail: null,
     } 
   },
   methods: {
     addToCart(product) {
-      // this.$router.push('/products')
       this.$store.commit('cart/AddToCart', product)
     },
     goToProduct(productId) {
@@ -98,7 +90,6 @@ export default {
   },  
 }
 </script>
-
 
 <style lang=""></style>
 

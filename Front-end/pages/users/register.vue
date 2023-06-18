@@ -115,7 +115,7 @@
             })
             .then((response) => {
                console.log(response);
-               if(response.data > 0){
+               if(response.data == true){
                   alert('Đăng ký thành công! Vui lòng đăng nhập lại');
                   this.$router.push(`/users/login`);
                }

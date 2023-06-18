@@ -67,8 +67,8 @@ export default {
           })
           .then((response) => {
               console.log(response);
-              if(response.status == 200){
-                alert("Đăng nhập thành công");
+              if(response.data.result == true){
+                alert(response.data.message);
                 Cookies.saveToken(response.data.access_token)
                 Cookies.saveUser(response.data.user.id);
                 Cookies.saveData('authentication', true)
@@ -79,7 +79,7 @@ export default {
                   this.$router.push(`../`);
                 }
               } else {
-                  alert("Thông tin tài khoản mật khẩu không chính xác");
+                  alert(response.data.message);
               }
           })
           .catch((error) => {
