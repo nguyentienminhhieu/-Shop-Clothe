@@ -29,7 +29,6 @@
                 </ul>   
             <v-spacer />
             <div class="account-menu-container" >
-                <!-- nuxt to="/users/login" -->
                 <v-btn @click="toggleAccountMenu" icon >
                     <v-icon size="20">mdi-account-circle</v-icon>
                 </v-btn>

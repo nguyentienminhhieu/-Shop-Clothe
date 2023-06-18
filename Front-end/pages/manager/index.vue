@@ -27,7 +27,6 @@
                 </ul>   
             <v-spacer />
             <div class="account-menu-container" >
-                <!-- nuxt to="/users/login" -->
                 <v-btn @click="toggleAccountMenu" icon >
                     <v-icon size="20">mdi-account-circle</v-icon>
                 </v-btn>
@@ -36,15 +35,6 @@
             <v-btn @click="toggleTheme" icon>
                 <v-icon size="20">mdi-brightness-7</v-icon>
             </v-btn>
-
-            <!-- <nuxt-link :to="cookieExists ? './users' : './products'">
-                {{ cookieExists ? 'Users' : 'Products' }}
-            </nuxt-link> -->
-
-            <!-- <v-btn @click="getUserH" icon>
-                Hello
-            </v-btn> -->
-
         </v-app-bar>
     </div>   
     

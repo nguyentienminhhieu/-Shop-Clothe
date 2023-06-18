@@ -4,7 +4,6 @@
         <div class="container">
           <div class="content">
             <h2>Đổi mật khẩu</h2>
-            <!-- <form @submit="changePassword()"> -->
                 <div class="item-form">
                     <label for="currentPassword">Mật khẩu hiện tại:</label>
                     <input type="password" id="currentPassword" v-model="currentPassword">
@@ -18,12 +17,9 @@
                     <input type="password" id="confirmPassword" v-model="confirmPassword">
                 </div>
                 <div class="item-form">
-                    <!-- <button type="submit" class="button-primary">Đổi mật khẩu</button> -->
                     <button @click="changePassword()" type="submit" class="button-primary">Đổi mật khẩu</button>
                     <button @click="homeAccount()" type="submit" class="button-primary">Quay lại</button>
                 </div>
-            <!-- </form> -->
-            <!-- <button @click="changePassword()" type="submit" class="button-primary">Test</button> -->
           </div>
         </div>
       <Footer/>
@@ -40,7 +36,6 @@
         currentPassword: '',
         newPassword: '',
         confirmPassword: '',
-        // users: []
       };
     },
     methods: {
@@ -81,6 +76,7 @@
         // .catch((error) => {
         //     console.log(error);
         // });
+        // console.log(`${this.$route.params.id}`);
     },
   }
   </script>

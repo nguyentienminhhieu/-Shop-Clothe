@@ -4,11 +4,17 @@
          {{ cookieExists ? 'Thông tin tài khoản' : 'Đăng ký' }}
       </v-btn>
       <br>
-
+      <v-btn @click="cookieExists ? changePassword(cookieID) : support()" class="menu-link" text>
+        {{ cookieExists ? 'Đổi mật khẩu' : 'Hỗ trợ' }}
+     </v-btn>
+     <br>
+     <v-btn @click="cookieExists ? manager(cookieID) : support()" class="menu-link" text>
+        {{ cookieExists ? 'Quản lý' : 'Hỗ trợ' }}
+     </v-btn>
+     <br>
       <v-btn @click="cookieExists ? logOut() : logIn()" class="menu-link" text>
         {{ cookieExists ? 'Đăng xuất' : 'Đăng nhập' }}
       </v-btn>
-
     </div>
 </template>
 
@@ -22,7 +28,9 @@ import  Cookies  from "@/services/cookies.service.js";
 export default {
     data() {
         return {
-            cookieExists: false,
+          roleUser: 0,
+          cookieID: 0,
+          cookieExists: false,
         };
     },
     computed: {
@@ -42,7 +50,9 @@ export default {
     mounted() {
       this.$store.dispatch(GET_USER)
       if (Cookies.getToken() != null) {
-            this.cookieExists = true;
+        this.cookieExists = true;
+        this.cookieID = Cookies.getUser();
+        // console.log(this.cookieID);
       }
     },
     methods: {
@@ -61,6 +71,32 @@ export default {
       },
       profile() {
         this.$router.push('/users/profile');
+      },
+      support() {
+        alert('Chức năng đang được cập nhật')
+      },
+      changePassword(id) {
+        this.$router.push(`/users/${id}`);
+      },
+      manager(id) {
+        // console.log(id);
+        // this.$axios
+        //   .get(`http://127.0.0.1:8000/api/users/search/2`)
+        //   .then((response) => {
+        //       console.log(response.data);
+        //       // this.roleUser = response.data.role;
+        //     })
+        //     .catch((error) => {
+        //       console.log(error);
+        //     });
+        // if (this.roleUser === 1){
+        //   this.$router.push(`/manager/users`);
+        // }
+        // else {
+        //   alert("Bạn không có quyền truy cập");
+        //   location.reload();
+        // }
+          this.$router.push(`/manager/users`);
       }
     },
 }

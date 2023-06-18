@@ -4,24 +4,18 @@
       <div class="container">
         <div class="content">
           <h2>Thông tin tài khoản</h2>
-          <!-- <form > -->
-              <h3>Mã tài khoản: <span>{{ users.id }}</span></h3> 
-              <h3>Email: <span>{{ users.email }}</span></h3>
+            <h3>Mã tài khoản: <span>{{ users.id }}</span></h3> 
+            <h3>Email: <span>{{ users.email }}</span></h3>
 
-              <p><h3>Quyền truy cập</h3></p>
-              <select name="" id=""  @change="handleDepartmentChange($event.target.value)">
-                <option v-for="itemDep in department" :key="itemDep.id" :value="itemDep.id" :selected="itemDep.id == users.department_id">{{itemDep.name}}</option>
-              </select>
+            <h3>Quyền truy cập</h3>
+            <input type="text" class="role" @change="handleChangeRole" min="1" max="2" v-model="role">
 
-              <p><h3>Trạng thái hoạt động</h3></p>
-              <select  name="" id=""  @change="handleStatusChange($event.target.value)">
-                <option v-for="itemStatus in status" :key="itemStatus.id" :value="itemStatus.id" :selected="itemStatus.id == users.status_id">{{itemStatus.name}}</option>
-              </select>
-              
-              <br>
-              <button @click="updateAccount(users.id)" type="submit" class="button-primary">Lưu thông tin</button>
-              <button @click="homeAccount()" type="submit" class="button-primary">Quay lại</button>
-            <!-- </form> -->
+            <h3>Trạng thái hoạt động</h3>
+            <input type="text" min="0" max="1" v-model="status">
+            
+            <br>
+            <button @click="updateAccount(users.id)" type="submit" class="button-primary">Lưu thông tin</button>
+            <button @click="homeAccount()" type="submit" class="button-primary">Quay lại</button>
         </div>
       </div>
 
@@ -37,17 +31,32 @@ export default {
   data() {
     return {
       users: [],
-      status: [],
-      department: [],
+      status: 0,
+      role: 0,
     };
   },
   methods: {
+    handleChangeRole() {
+      
+    },
     updateAccount(id){
+      if(this.status > 1 || this.status < 0) {
+        alert("Trạng thái hoạt động là: \n 1 - Đã xác thực - Đang hoạt động \n 2 - Chưa xác thực - Không hoạt được");
+      }
+      else if(this.role > 2 || this.role < 0) {
+        alert("Quyền: \n 1 - Quyền quản trị \n 2 - Người dùng");
+      }
+      else {
+      const data = {
+        id: id,
+        status: this.status, 
+        role: this.role,
+      };
       this.$axios
-        .put(`http://127.0.0.1:8000/api/users/update`,this.users)
+        .put(`http://127.0.0.1:8000/api/users/update`, data)
         .then((response) => {
           // console.log(response)
-          if(response.data == true){
+          if(response.data > 0){
             alert("Cập nhật tài khoản thành công");
             this.$router.push('/manager/users/')
           }
@@ -59,13 +68,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-      },
-    // },
-    handleDepartmentChange(value) {
-      this.users.department_id = value; 
-    },
-    handleStatusChange(value) {
-      this.users.status_id = value; 
+      }
     },
     homeAccount(){
       this.$router.push('./')
@@ -75,9 +78,9 @@ export default {
   this.$axios
     .get(`http://127.0.0.1:8000/api/users/edit/${this.$route.params.id}`)
     .then((response) => {
-      this.users = response.data[0];
-      this.department = response.data[1];
-      this.status = response.data[2];
+      this.users = response.data;
+      this.status = response.data.status;
+      this.role = response.data.role;
     })
     .catch((error) => {
       console.log(error);
@@ -94,13 +97,16 @@ export default {
     align-items: center;
     width: 100%;
   }
+  h3 {
+    margin-top: 10px;
+  }
   .content{
     text-align: center;
   }
   span{
     color: red;
   }
-  select {
+  input {
     background-color: #f2f2f2;
     color: #333;
     border: 1px solid #ccc;
@@ -111,14 +117,7 @@ export default {
     cursor: pointer;
   }
 
-  select option {
-    font-weight: normal;
-  }
 
-  select:focus {
-    outline: none;
-    border-color: #66afe9;
-  }
   .button-primary {
     margin-top: 20px;
     padding: 8px 12px;

@@ -14,15 +14,15 @@ export const saveToken = token => {
   Cookies.set(TOKEN, token, {expires: 60 * 60 * 24});
 };
 
+export const destroyToken = () => {
+  Cookies.remove(TOKEN);
+};
+
 export const saveData = (key,value) => {
   Cookies.set(key,value);
 };
 export const getData = (key) => {
   return Cookies.get(key);
-};
-
-export const destroyToken = () => {
-  Cookies.remove(TOKEN);
 };
 
 export const getUser = () => {

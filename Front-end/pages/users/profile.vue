@@ -5,7 +5,6 @@
         <div class="profile">
           <h1 class="profile-title">Profile</h1>
         </div>
-
     <div class="profile-info" v-if="user !== null">
       <div class="info-item">
         <label class="info-label">ID:</label>
@@ -20,7 +19,6 @@
         <div class="info-value">{{ user.email }}</div>
       </div>
     </div>
-
     <Footer/>
     <ScrollTop />
   </div>
@@ -40,14 +38,12 @@ export default {
     this.$axios
       .get(`http://127.0.0.1:8000/api/users/search/${id}`)
       .then((response) => {
-          console.log(response);
           this.user = response.data;
       })
       .catch((error) => {
           console.log(error);
       });
   },
-
 }
 </script>
 <style scoped>

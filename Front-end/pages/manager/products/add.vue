@@ -124,6 +124,39 @@
         width: 100%;
         text-align: center;
     }
+    .item-form {
+      margin-bottom: 10px;
+    }
+    
+    .item-form label {
+      display: inline-block;
+      width: 120px;
+    }
+    
+    .item-form select {
+      width: 300px;
+    }
+    
+    .item-form input[type="radio"] {
+      margin-right: 10px;
+    }
+    
+    .item-form input[type="text"],
+    .item-form select {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    
+    .item-form input[type="radio"] {
+      border: none;
+      margin-right: 2px;
+    }
+    
+    .item-form input[type="radio"]:checked {
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+    }
     .item-form{
         width: 40%;
         display: flex;

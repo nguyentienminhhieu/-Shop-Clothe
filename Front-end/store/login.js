@@ -53,6 +53,7 @@ export const actions = {
     commit('setUser', null);
     Cookies.destroyUser(); // Xóa thông tin người dùng khỏi lưu trữ
     Cookies.destroyToken(); // Xóa token khỏi lưu trữ
+    Cookies.destroyRole(); // Xóa token khỏi lưu trữ
     // Cookies.destroyRefreshToken(); // Xóa refresh token
     commit('setAuthentication', false); // Đặt lại giá trị authentication
     Cookies.saveData('authentication', false); // Lưu giá trị authentication

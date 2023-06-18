@@ -59,32 +59,31 @@ export default {
   },
   methods: {
       loginHandler() {
-          this.$axios
-          .post('http://127.0.0.1:8000/api/auth/login',
-          {
-              email: this.email,
-              password: this.password,
-          })
-          .then((response) => {
-              console.log(response);
-              if(response.data.result == true){
-                alert(response.data.message);
-                Cookies.saveToken(response.data.access_token)
-                Cookies.saveUser(response.data.user.id);
-                Cookies.saveData('authentication', true)
+        this.$axios
+        .post('http://127.0.0.1:8000/api/auth/login',
+        {
+            email: this.email,
+            password: this.password,
+        })
+        .then((response) => {
+            if(response.data.result == true){
+              alert(response.data.message);
+              Cookies.saveToken(response.data.access_token)
+              Cookies.saveUser(response.data.user.id);
+              Cookies.saveData('authentication', true)
 
-                if (response.data.user.role == 1) {
-                  this.$router.push(`../manager/`);
-                } else {
-                  this.$router.push(`../`);
-                }
+              if (response.data.user.role == 1) {
+                this.$router.push(`../manager/`);
               } else {
-                  alert(response.data.message);
+                this.$router.push(`../`);
               }
-          })
-          .catch((error) => {
-              console.log(error);
-          });   
+            } else {
+                alert(response.data.message);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });   
       }
   }
 }

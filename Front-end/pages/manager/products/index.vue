@@ -50,12 +50,12 @@ export default {
   methods: {
     updateProduct(productId) {
       this.$router.push({
-            name: 'manager-products-edit___en___en___en',
+            name: 'manager-products-edit___en',
             params: { id: productId }
         });
     },
     removeProduct(productId) {
-      console.log('Thay đổi mật khẩu sản phẩm với ID:', productId);
+      console.log('Xóa sản phẩm thành công');
     },
      formAdd(){
         this.$router.push('/manager/products/add');
