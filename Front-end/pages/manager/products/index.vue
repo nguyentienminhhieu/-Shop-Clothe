@@ -2,7 +2,11 @@
   <div>
     <DesktopNavAdmin />
     <v-container>
-      <h2>Danh sách thông tin sản phẩm</h2>
+
+       <div class="header-container">
+            <h2>Danh sách thông tin sản phẩm</h2>
+            <button @click="formAdd()" class="button-primary">Thêm mới</button>
+        </div>
       <v-row>
         <v-col v-for="(item, index) in products" :key="index" cols="12" md="4">
           <v-card class="product-card" outlined>
@@ -42,11 +46,15 @@ export default {
   },
   methods: {
     updateProduct(productId) {
+      this.$router.push(`/manager/products/edit`);
       console.log('Cập nhật sản phẩm với ID:', productId);
     },
     removeProduct(productId) {
       console.log('Thay đổi mật khẩu sản phẩm với ID:', productId);
     },
+     formAdd(){
+        this.$router.push('/manager/products/add');
+    }
   },
   mounted() {
     this.$axios
@@ -65,6 +73,26 @@ export default {
 h2 {
   text-align: center;
 }
+ .header-container{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        align-items: right;
+        justify-content: space-between;
+    }
+    .button-primary {
+        padding: 0 5px;
+        height: 30px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        background: #288eec;
+        border: none;
+        color: #fff;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
 
 .product-card {
   margin-bottom: 20px;

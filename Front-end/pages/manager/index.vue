@@ -48,7 +48,7 @@
         </v-app-bar>
     </div>   
     
-    <Footer/>
+    <Footer/> 
     <ScrollTop />
 </div>
 </template>

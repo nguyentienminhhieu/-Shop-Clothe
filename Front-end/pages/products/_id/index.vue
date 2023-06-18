@@ -69,6 +69,12 @@ import {GET_PRODUCTS_ID} from '@/store/products'
 export default {
   async created() {
     await this.$store.dispatch(`${GET_PRODUCTS_ID}`, this.$route.params.id)
+  //        try {
+  //           const response = await axios.get(`http://127.0.0.1:8000/api/products/searchByID/${this.$route.params.id}`)
+  //           this.product_detail = response.data;
+  //       } catch (error) {
+  //           console.log(error);
+  //       }
   },
     computed: {
         ...mapGetters({
@@ -78,6 +84,7 @@ export default {
   data() {
     return {
       product: null,
+      // product_detail: null,
     } 
   },
   methods: {
