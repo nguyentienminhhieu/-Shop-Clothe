@@ -21,7 +21,7 @@
                   <td>{{ item.status }}</td>
                   <td>
                       <button class='button-update' @click="update(item.id)">Cập nhật</button>
-                      <button class='button-removeAccount' @click="removeAccount(item.id)">Xóa</button>
+                      <button class='button-remove' @click="removeAccount(item.id)">Xóa</button>
                   </td>                        
               </tr>
           </tbody>
@@ -87,42 +87,31 @@ h2{
   padding: 8px;
   text-align: center;
 }
-
 .custom-table th {
   background-color: #f2f2f2;
 }
-
 .custom-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
 .custom-table tbody tr:hover {
   background-color: #eaeaea;
 }
-.button-update {
-    padding: 0 5px;
-    height: 30px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    background: #288eec;
-    border: none;
-    color: #fff;
-    letter-spacing: 1px;
-    border-radius: 5px;
+button {
+  padding: 0 5px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  letter-spacing: 1px;
+  border-radius: 5px;
 }
-
-.button-removeAccount{
-    padding: 0 5px;
-    height: 30px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
+.button-update {
+  background: #288eec;
+}
+.button-remove{
     background: #e30000;
-    border: none;
-    color: #fff;
-    letter-spacing: 1px;
-    border-radius: 5px;
 }
 
 </style>

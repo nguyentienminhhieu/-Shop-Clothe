@@ -19,26 +19,7 @@ const mutations = {
 }
 
 const actions = {
-    // async fetchProducts({commit}) {
-    //     try {
-    //         const response = await axios.get('http://127.0.0.1:8000/api/products')
-    //         const products = response.data;
-    //         commit('setProducts', products);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
     async [GET_PRODUCTS]({ commit }, payload) {
-        // return new Promise((resolve, reject) => {
-        //   this.$query(GET_PRODUCTS).then(
-        //     (response) => {
-        //         let data = response.data
-        //       commit('setProducts', data)
-        //       resolve(data);
-        //     }).catch(error => {
-        //     reject(error);
-        //   })
-        // });
         try {
           const response = await axios.get('http://127.0.0.1:8000/api/products');
           const products = response.data;
@@ -73,7 +54,6 @@ const getters = {
     productHandbags(state) {
       return state.products.filter(product => product.tag_id == 3)
     },
-    // Shoes
     productShoes(state) {
       return state.products.filter(product => product.tag_id == 2)
     },
@@ -87,7 +67,6 @@ const getters = {
       return state.products.filter(product => product.tag_id == 5)
     },
 }
-
 
 export default {
     state,

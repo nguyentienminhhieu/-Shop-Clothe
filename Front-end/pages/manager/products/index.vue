@@ -54,8 +54,22 @@ export default {
             params: { id: productId }
         });
     },
-    removeProduct(productId) {
-      console.log('Xóa sản phẩm thành công');
+    removeProduct(id) {
+      this.$axios
+        .delete(`http://127.0.0.1:8000/api/products/delete/${id}`) 
+        .then((response) => {
+          console.log(response)
+          if(response.data > 0){
+            alert('Sản phẩm đã được xóa.');
+            location.reload();
+          }
+          else {
+            alert('Vui lòng thử lại');
+          }
+        })
+        .catch(error => {
+          alert('Lỗi xóa sản phẩm. Vui lòng thử lại');
+        });     
     },
      formAdd(){
         this.$router.push('/manager/products/add');

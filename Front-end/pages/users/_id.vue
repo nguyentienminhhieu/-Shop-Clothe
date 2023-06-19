@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-      <DesktopNavAdmin/>
+      <DesktopNav/>
         <div class="container">
           <div class="content">
             <h2>Đổi mật khẩu</h2>
@@ -51,7 +51,7 @@
                 // console.log(response)
                 if(response.data.result == true){
                     alert(response.data.message);
-                    this.$router.push('/manager/users/')
+                    this.$router.push('../')
                 }
                 else{
                     alert(response.data.message);
@@ -63,20 +63,8 @@
             });
         },
       homeAccount(){
-        this.$router.push('./')
+        this.$router.push('../')
       },
-    },
-    mounted() {
-        // this.$axios
-        // .get(`http://127.0.0.1:8000/api/users/search/${this.$route.params.id}`)
-        // .then((response) => {
-        //     this.users = response.data;
-        //     console.log(response)
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-        // console.log(`${this.$route.params.id}`);
     },
   }
   </script>

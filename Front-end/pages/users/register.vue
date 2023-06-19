@@ -14,7 +14,7 @@
                            <v-form>
                               <v-text-field
                                   name="username"
-                                  label="Username"
+                                  label="Tên tài khoản"
                                   type="text"
                                   v-model="username"
                                   @blur="$v.username.$touch()"
@@ -42,7 +42,7 @@
                               <v-text-field
                                  id="password"
                                  name="password"
-                                 label="Password"
+                                 label="Mật khẩu"
                                  type="password"
                                  v-model="password"
                                  @blur="$v.password.$touch()"

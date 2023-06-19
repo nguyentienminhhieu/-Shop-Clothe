@@ -62,11 +62,9 @@ export default {
         this.$router.push('/users/login');
       },
       logIn(){
-        console.log("User chưa đăng nhập");
         this.$router.push('/users/login');
       },
       register() {
-        console.log("Đăng ký");
         this.$router.push('/users/register');
       },
       profile() {
