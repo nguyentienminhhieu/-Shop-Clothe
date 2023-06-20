@@ -8,7 +8,7 @@
     <div class="profile-info" v-if="user !== null">
       <div class="info-item">
         <label class="info-label">Mã tài khoản:</label>
-        <div class="info-value">{{ user.user_id }}</div>
+        <div class="info-value">{{ user.id }}</div>
       </div>
       <div class="info-item">
         <label class="info-label">Tên tài khoản:</label>
@@ -56,14 +56,6 @@ export default {
       }
       
     let id = Cookies.getUser();
-    // this.$axios
-    //   .get(`http://127.0.0.1:8000/api/users/search/${id}`)
-    //   .then((response) => {
-    //       this.user = response.data;
-    //   })
-    //   .catch((error) => {
-    //       console.log(error);
-    //   });
     this.$axios
       .get(`http://127.0.0.1:8000/api/users/info/search/${id}`)
       .then((response) => {

@@ -63,15 +63,11 @@
       <v-btn @click="toggleTheme" icon>
         <v-icon size="20">mdi-brightness-7</v-icon>
       </v-btn>
-       <div>
-    <select v-model="locale" @change="changeLocale">
-      <option value="en">English</option>
-      <option value="vi">Tiếng Việt</option>
-      <option value="ja">日本語</option>
-    </select>    
-    </div>
-        <v-btn @click="cookieExists ? manager(cookieID) : support()" class="menu-link" text>
-        {{ (cookieExists && roleUser === 1) ? 'Quản lý' : 'Quản lý' }}
+      <div v-if="cookieExists">
+        <v-btn @click="cookieExists ? manager(cookieID) : isAdmin()" class="menu-link" text>
+            Quản lý
+        </v-btn>
+      </div>
      </v-btn>
     </v-app-bar>
   </div>
@@ -95,7 +91,6 @@ export default {
     if (Cookies.getToken() != null) {
         this.cookieExists = true;
         this.cookieID = Cookies.getUser();
-        // console.log(this.cookieID);
       }
   },
   beforeDestroy() {
@@ -122,22 +117,10 @@ export default {
       this.$i18n.locale = this.locale;
       this.$router.push(this.switchLocalePath(this.locale))
     },
-    // logOut(){
-    //   this.$axios.post('http://127.0.0.1:8000/api/users/logout')
-    //   .then(response => {
-    //     localStorage.removeItem('id_session');
-    //     // Xóa thông tin đăng nhập khác khỏi local storage nếu có
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-    // }
     manager(id) {
-        // console.log(id);
         this.$axios
           .get(`http://127.0.0.1:8000/api/users/search/${id}`)
           .then((response) => {
-              console.log(response.data);
               this.roleUser = response.data.role;
                 if (this.roleUser === 1){
                 this.$router.push(`/manager/users`);
@@ -150,8 +133,6 @@ export default {
             .catch((error) => {
               console.log(error);
             });
-      
-          // this.$router.push(`/manager/users`);
       }
   },
 }

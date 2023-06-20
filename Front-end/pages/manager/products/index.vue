@@ -2,24 +2,25 @@
   <div>
     <DesktopNavAdmin />
     <v-container>
-
-       <div class="header-container">
-            <h2>Danh sách thông tin sản phẩm</h2>
-            <button @click="formAdd()" class="button-primary">Thêm mới</button>
-        </div>
+      <div class="header-container">
+        <h2>Danh sách thông tin sản phẩm</h2>
+        <button @click="formAdd()" class="button-primary">Thêm mới</button>
+      </div>
       <v-row>
         <v-col v-for="(item, index) in products" :key="index" cols="12" md="4">
           <v-card class="product-card" outlined>
             <v-img :src="item.image" height="200"></v-img>
             <v-card-title>{{ item.name }}</v-card-title>
             <v-card-text>
-              <p>Mã sản phẩm: {{ item.id }}</p>
-              <p>Giá: {{ item.price }}</p>
-              <!-- <p>Số lượng: {{ item.quantity }}</p> -->
-              <p>Số lượng: {{ item.quantity > 0 ? item.quantity : 'Đã hết hàng' }}</p>
+              <p><strong>Mã sản phẩm:</strong> {{ item.id }}</p>
+              <p><strong>Giá:</strong> {{ item.price }}</p>
+              <p>
+                <strong>Số lượng:</strong>
+                {{ item.quantity > 0 ? item.quantity : 'Đã hết hàng' }}
+              </p>
 
-              <p>Mô tả: {{ item.description }}</p>
-              <p>Loại hàng: {{ item.tag_name }}</p>
+              <p><strong>Mô tả:</strong> {{ item.description }}</p>
+              <p><strong>Loại hàng:</strong> {{ item.tag_name }}</p>
               <p>{{ item.onSale === 1 ? 'Có' : 'Không' }} giảm giá</p>
               <p>{{ item.news === 1 ? 'Sản phẩm mới' : '' }}</p>
             </v-card-text>
@@ -45,73 +46,71 @@ export default {
   data() {
     return {
       products: [],
-    };
+    }
   },
   methods: {
     updateProduct(productId) {
       this.$router.push({
-            name: 'manager-products-edit___en',
-            params: { id: productId }
-        });
+        name: 'manager-products-edit___en',
+        params: { id: productId },
+      })
     },
     removeProduct(id) {
       this.$axios
-        .delete(`http://127.0.0.1:8000/api/products/delete/${id}`) 
+        .delete(`http://127.0.0.1:8000/api/products/delete/${id}`)
         .then((response) => {
-          console.log(response)
-          if(response.data > 0){
-            alert('Sản phẩm đã được xóa.');
-            location.reload();
-          }
-          else {
-            alert('Vui lòng thử lại');
+          if (response.data > 0) {
+            alert('Sản phẩm đã được xóa.')
+            location.reload()
+          } else {
+            alert('Vui lòng thử lại')
           }
         })
-        .catch(error => {
-          alert('Lỗi xóa sản phẩm. Vui lòng thử lại');
-        });     
+        .catch((error) => {
+          alert('Lỗi xóa sản phẩm. Vui lòng thử lại')
+        })
     },
-     formAdd(){
-        this.$router.push('/manager/products/add');
-    }
+    formAdd() {
+      this.$router.push('/manager/products/add')
+    },
   },
   mounted() {
     this.$axios
-      .get('http://127.0.0.1:8000/api/products')
+      .get('http://127.0.0.1:8000/api/products/getAll')
       .then((response) => {
-        this.products = response.data;
+        this.products = response.data
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   },
-};
+}
 </script>
 
 <style scoped>
 h2 {
   text-align: center;
 }
- .header-container{
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        align-items: right;
-        justify-content: space-between;
-    }
-    .button-primary {
-        padding: 0 5px;
-        height: 30px;
-        text-align: center;
-        font-size: 16px;
-        cursor: pointer;
-        background: #288eec;
-        border: none;
-        color: #fff;
-        letter-spacing: 1px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
+.header-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: right;
+  justify-content: space-between;
+}
+.button-primary {
+  padding: 0 5px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  background: #288eec;
+  border: none;
+  color: #fff;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 
 .product-card {
   margin-bottom: 20px;

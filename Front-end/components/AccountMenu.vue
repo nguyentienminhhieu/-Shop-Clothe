@@ -8,10 +8,6 @@
         {{ cookieExists ? 'Đổi mật khẩu' : 'Hỗ trợ' }}
      </v-btn>
      <br>
-     <!-- <v-btn @click="cookieExists ? manager(cookieID) : support()" class="menu-link" text>
-        {{ cookieExists ? 'Quản lý' : 'Hỗ trợ' }}
-     </v-btn> -->
-     <!-- <br> -->
       <v-btn @click="cookieExists ? logOut() : logIn()" class="menu-link" text>
         {{ cookieExists ? 'Đăng xuất' : 'Đăng nhập' }}
       </v-btn>
@@ -52,7 +48,6 @@ export default {
       if (Cookies.getToken() != null) {
         this.cookieExists = true;
         this.cookieID = Cookies.getUser();
-        // console.log(this.cookieID);
       }
     },
     methods: {
@@ -76,26 +71,6 @@ export default {
       changePassword(id) {
         this.$router.push(`/users/${id}`);
       },
-      // manager(id) {
-      //   // console.log(id);
-      //   // this.$axios
-      //   //   .get(`http://127.0.0.1:8000/api/users/search/2`)
-      //   //   .then((response) => {
-      //   //       console.log(response.data);
-      //   //       // this.roleUser = response.data.role;
-      //   //     })
-      //   //     .catch((error) => {
-      //   //       console.log(error);
-      //   //     });
-      //   // if (this.roleUser === 1){
-      //   //   this.$router.push(`/manager/users`);
-      //   // }
-      //   // else {
-      //   //   alert("Bạn không có quyền truy cập");
-      //   //   location.reload();
-      //   // }
-      //     this.$router.push(`/manager/users`);
-      // }
     },
 }
 </script>

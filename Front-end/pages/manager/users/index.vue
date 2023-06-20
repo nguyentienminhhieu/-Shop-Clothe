@@ -48,7 +48,6 @@ export default {
       this.$axios
         .delete(`http://127.0.0.1:8000/api/users/delete/${id}`) 
         .then((response) => {
-          console.log(response)
           if(response.data > 0){
             alert('Tài khoản đã được xóa.');
             location.reload();

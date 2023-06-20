@@ -9,7 +9,7 @@
         placeholder="Search"
       ></v-text-field>
     </div>
-    <v-row >
+    <v-row>
       <template v-for="(p, i) in filteredProducts">
         <v-fade-transition :key="`product${p.id}-${i}`">
           <v-col cols="12" md="4">
@@ -27,7 +27,9 @@
                     </v-row>
                   </template>
                 </v-img>
-                <v-card-title class="text-md-body-1 font-weight-bold">{{p.name}}</v-card-title>
+                <v-card-title class="text-md-body-1 font-weight-bold">{{
+                  p.name
+                }}</v-card-title>
                 <v-card-subtitle class="primary--text pb-3">
                   ${{ p.price }}
                 </v-card-subtitle>
@@ -52,11 +54,11 @@
                   :value="p.rate"
                   dense
                   size="20"
-                 ></v-rating>
+                ></v-rating>
               </div>
               <v-card-actions>
                 <v-btn color="primary" text @click="addToCart(p)">
-                 Thêm vào giỏ hàng
+                  Thêm vào giỏ hàng
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -67,21 +69,21 @@
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
-import {GET_PRODUCTS} from '@/store/products' 
+import { mapGetters } from 'vuex'
+import { GET_PRODUCTS } from '@/store/products'
 export default {
   async created() {
     await this.$store.dispatch(`${GET_PRODUCTS}`)
   },
- 
+
   data() {
     return {
       search: null,
     }
   },
   computed: {
-        ...mapGetters({
-      products: "getProducts",
+    ...mapGetters({
+      products: 'getProducts',
     }),
     filteredProducts() {
       if (!this.products || !this.search) return this.products
@@ -104,7 +106,6 @@ export default {
     },
   },
 }
-
 </script>
 
 <style lang=""></style>

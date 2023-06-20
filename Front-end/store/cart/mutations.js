@@ -36,6 +36,8 @@ export default {
     } else {
       item.quantity -= 1
     }
+    localStorage.setItem('myCart', JSON.stringify(state.cart))
+
     this.$swal({
       toast: true,
       text: 'Cart Updated.',
@@ -48,6 +50,7 @@ export default {
   },
   RemoveCartItem(state, index) {
     state.cart.splice(index, 1)
+    localStorage.setItem('myCart', JSON.stringify(state.cart))
 
     this.$swal({
       toast: true,
@@ -62,6 +65,8 @@ export default {
   IncreaseItemCount(state, index) {
     let item = state.cart[index]
     item.quantity += 1
+    localStorage.setItem('myCart', JSON.stringify(state.cart))
+
     this.$swal({
       toast: true,
       text: 'Cart Updated.',

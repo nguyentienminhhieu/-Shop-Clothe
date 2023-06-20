@@ -3,19 +3,7 @@
     <DesktopNav/>
     <div class="container">
       <div class="content">
-        <h2>Đổi thông tin</h2>
-        <div class="item-form">
-          <label for="currentName">Tên tài khoản hiện tại:</label>
-          <input type="text" id="currentName" v-model="currentName">
-        </div>
-        <div class="item-form">
-          <label for="newName">Tên tài khoản mới:</label>
-          <input type="text" id="newName" v-model="newName">
-        </div>
-        <div class="item-form">
-          <label for="email">Email:</label>
-          <input type="text" id="email" v-model="email">
-        </div>
+        <h2>Cập nhật thông tin</h2>
         <div class="item-form">
           <label for="phoneNumber">Số Điện Thoại:</label>
           <input type="text" id="phoneNumber" v-model="phoneNumber">
@@ -25,7 +13,7 @@
           <input type="text" id="address" v-model="address">
         </div>
         <div class="item-form">
-          <button @click="changeInfo" type="submit" class="button-primary">Đổi Thông Tin</button>
+          <button @click="updateInfo" type="submit" class="button-primary">Cập nhật</button>
           <button @click="homeAccount" type="submit" class="button-primary">Quay lại</button>
         </div>
       </div>
@@ -36,35 +24,31 @@
 </template>
 
 <script>
+import  Cookies  from "@/services/cookies.service.js";
 export default {
   data() {
     return {
-      currentName: '',
-      newName: '',
-      email: '',
       phoneNumber: '',
       address: '',
+      message: '',
     };
   },
   methods: {
-    changeInfo() {
+    updateInfo() {
       const data = {
-        id: this.$route.params.id,
-        currentName: this.currentName,
-        newName: this.newName,
-        email: this.email,
+        id: Cookies.getUser(),
         phoneNumber: this.phoneNumber,
         address: this.address,
       };
       this.$axios
-        .put(`http://127.0.0.1:8000/api/info/update`, data)
+        .put(`http://127.0.0.1:8000/api/users/info/update`, data)
         .then((response) => {
-            if (response.data.result === true) {
-            alert(response.data.message); 
-            this.$router.push('./');
+            if (response.data > 0) {
+              alert("Cập nhật thành công"); 
+              this.$router.push('./');
             } else {
-            alert(response.data.message);
-            return;
+            alert("Lỗi cập nhật. Vui lòng thử lại");
+              return;
             }
         })
         .catch((error) => {
@@ -74,6 +58,18 @@ export default {
     homeAccount() {
       this.$router.push('./');
     },
+  },
+  mounted() {
+    let id = Cookies.getUser();
+    this.$axios
+      .get(`http://127.0.0.1:8000/api/users/info/search/${id}`)
+      .then((response) => {
+        this.address = response.data.address;
+        this.phoneNumber = response.data.telephone;
+      })
+      .catch((error) => {
+          console.error(error);
+      });
   },
 }
 </script>

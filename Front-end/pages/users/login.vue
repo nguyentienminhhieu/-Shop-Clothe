@@ -27,12 +27,11 @@
                       v-model="password"
                       @keydown.enter.prevent="loginHandler"
                     ></v-text-field>
-
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <p>
-                    Bạn chưa có tài khoản? 
+                    Bạn chưa có tài khoản?
                     <nuxt-link to="/users/register">Đăng ký</nuxt-link>
                   </p>
                   <v-spacer></v-spacer>
@@ -48,43 +47,42 @@
 </template>
 
 <script>
-import  Cookies  from "@/services/cookies.service.js";
+import Cookies from '@/services/cookies.service.js'
 export default {
   data() {
-      return {
-          email: '',
-          password: '',
-          errors: {},
-      }
+    return {
+      email: '',
+      password: '',
+      errors: {},
+    }
   },
   methods: {
-      loginHandler() {
-        this.$axios
-        .post('http://127.0.0.1:8000/api/auth/login',
-        {
-            email: this.email,
-            password: this.password,
+    loginHandler() {
+      this.$axios
+        .post('http://127.0.0.1:8000/api/auth/login', {
+          email: this.email,
+          password: this.password,
         })
         .then((response) => {
-            if(response.data.result == true){
-              alert(response.data.message);
-              Cookies.saveToken(response.data.access_token)
-              Cookies.saveUser(response.data.user.id);
-              Cookies.saveData('authentication', true)
+          if (response.data.result == true) {
+            alert(response.data.message)
+            Cookies.saveToken(response.data.access_token)
+            Cookies.saveUser(response.data.user.id)
+            Cookies.saveData('authentication', true)
 
-              if (response.data.user.role == 1) {
-                this.$router.push(`../manager/`);
-              } else {
-                this.$router.push(`../`);
-              }
+            if (response.data.user.role == 1) {
+              this.$router.push(`../manager/`)
             } else {
-                alert(response.data.message);
+              this.$router.push(`../`)
             }
+          } else {
+            alert(response.data.message)
+          }
         })
         .catch((error) => {
-            console.log(error);
-        });   
-      }
-  }
+          console.log(error)
+        })
+    },
+  },
 }
 </script>

@@ -8,8 +8,8 @@
   >
     <hr>
     <br>
-    <h2 class="text-md-h6 font-weight-bold">FreeShop</h2>
-    <p class="text-md-body-2 mt-5">Free eCommerce Site Built With NuxtJS</p>
+    <h2 class="text-md-h6 font-weight-bold">2H-Shop</h2>
+    <p class="text-md-body-2 mt-5">Website Thương mại điện tử Thời trang</p>
     <div class="text-center">
       <v-btn
         color="surface"

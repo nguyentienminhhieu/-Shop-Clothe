@@ -55,7 +55,6 @@ export default {
       this.$axios
         .put(`http://127.0.0.1:8000/api/users/update`, data)
         .then((response) => {
-          // console.log(response)
           if(response.data > 0){
             alert("Cập nhật tài khoản thành công");
             this.$router.push('/manager/users/')

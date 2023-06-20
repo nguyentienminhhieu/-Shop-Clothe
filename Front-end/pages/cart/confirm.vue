@@ -1,10 +1,10 @@
 <template lang="">
-    <div>
-        <DesktopNav />
+  <div>
+    <DesktopNav />
     <br />
     <div class="text-center" v-if="$store.state.cart.cart.length == 0">
       <v-img class="d-block mx-auto" src="/emptycart.svg" width="500"></v-img>
-      <p>No Items Just Yet</p>
+      <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng</p>
     </div>
     <v-container v-else>
       <div class="mb-3" v-if="$store.state.cart.cart.length > 0">
@@ -16,7 +16,7 @@
         >
       </div>
       <v-form lazy-validation ref="form" class="mt-10">
-        <p class="font-weight-bold">Personal & Delivery</p>
+        <p class="font-weight-bold">Personal - Delivery</p>
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
@@ -104,12 +104,12 @@
     <br /><br />
     <Footer />
     <ScrollTop />
-    </div>
+  </div>
 </template>
 <script>
-import FM from "~/mixins/FormMixinx";
+import FM from '~/mixins/FormMixinx'
 export default {
-     mixins: [FM],
+  mixins: [FM],
   data() {
     return {
       email: null,
@@ -118,42 +118,40 @@ export default {
       address: null,
       city: null,
       country: null,
-      cc: "424242424242",
-      expdate: "06/15",
-      cvv: "123",
-    };
+      cc: '424242424242',
+      expdate: '06/15',
+      cvv: '123',
+    }
   },
   methods: {
     async proccess() {
-      if (!this.$refs.form.validate()) return;
+      if (!this.$refs.form.validate()) return
 
       await this.$swal({
-        title: "Proceessing your order",
-        icon: "info",
+        title: 'Proceessing your order',
+        icon: 'info',
         allowEscapeKey: false,
         allowOutsideClick: false,
         timer: 3000,
         timerProgressBar: true,
-        text: "Please Wait",
+        text: 'Please Wait',
         showConfirmButton: false,
-      });
+      })
       await this.$swal({
-        title: "Order Complete",
-        icon: "success",
+        title: 'Order Complete',
+        icon: 'success',
         allowEscapeKey: false,
         allowOutsideClick: false,
         timer: 4000,
         timerProgressBar: true,
-        text: "Thank You So Much ",
+        text: 'Thank You So Much ',
         showConfirmButton: false,
-      });
+      })
       //Remove items from cart
-      this.$store.commit("cart/ClearCart");
-      this.$router.push("/");
+      this.$store.commit('cart/ClearCart')
+      this.$router.push('/')
     },
   },
 }
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

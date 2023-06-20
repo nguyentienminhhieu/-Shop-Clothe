@@ -9,18 +9,13 @@
       }"
       app
     >
-       
       <v-toolbar-title
         class="text-md-h5 font-weight-bold pointhttp://localhost:3000/products/3er"  @click="$router.push('/')"
-        >FreeShop</v-toolbar-title
+        >2H-Shop</v-toolbar-title
       >
       <v-spacer />
       <v-divider vertical class="mx-md-5 mx-2" />
-      <!-- <v-btn nuxt to="/users/login" icon >
-        <v-icon size="20">mdi-account-circle</v-icon>
-      </v-btn> -->
       <div class="account-menu-container" >
-        <!-- nuxt to="/users/login" -->
         <v-btn @click="toggleAccountMenu" icon >
           <v-icon size="20">mdi-account-circle</v-icon>
         </v-btn>

@@ -19,44 +19,44 @@
 </template>
 
 <script>
-
 export default {
   layout: 'admin',
   data() {
     return {
       tags: [],
-    };
-  },
-  methods: {
-    edit(id){
-      this.$axios
-        .get('http://127.0.0.1:8000/api/tags/edit/',id)
-        .then((response) => {
-          this.tags = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     }
   },
-  mounted() {
-  // Call the API and get the list of products
-  this.$axios
-    .get('http://127.0.0.1:8000/api/tags')
-    .then((response) => {
-      this.tags = response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  methods: {
+    edit(id) {
+      this.$axios
+        .get('http://127.0.0.1:8000/api/tags/edit/', id)
+        .then((response) => {
+          this.tags = response.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
   },
-};
+  mounted() {
+    // Call the API and get the list of products
+    this.$axios
+      .get('http://127.0.0.1:8000/api/tags')
+      .then((response) => {
+        this.tags = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+}
 </script>
 <style>
-h3, p{
+h3,
+p {
   margin: 0 !important;
 }
-li{
+li {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -64,7 +64,7 @@ li{
   padding-bottom: 10px;
   border-bottom: 1px solid #333;
 }
-li>button{
+li > button {
   background-color: rgb(48, 48, 165);
   color: white;
   padding: 8px 12px;

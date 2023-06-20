@@ -5,38 +5,34 @@
       <v-row dense>
         <v-col md="2">
           <div style="position: sticky; top: 92px">
-            <!-- <v-text-field
-              prepend-inner-icon="mdi-magnify"
-              outlined
-              v-model="search"
-              clearable
-              placeholder="Search"
-            ></v-text-field> -->
             <v-list
               v-if="$vuetify.breakpoint.mdAndUp"
               color="transparent"
               subheader
             >
               <v-subheader>Loại hàng</v-subheader>
-              <nuxt-link v-for="(c, index) in categories" :key="index" :to="`/products/${c.name}`" class="text-decoration-none">
-              <v-list-item
-                link
+              <nuxt-link
+                v-for="(c, index) in categories"
+                :key="index"
+                :to="`/products/${c.name}`"
+                class="text-decoration-none"
               >
-                <v-list-item-avatar>
-                  <v-img :src="c.image"></v-img>
-                </v-list-item-avatar>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    {{ c.name }}
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
+                <v-list-item link>
+                  <v-list-item-avatar>
+                    <v-img :src="c.image"></v-img>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      {{ c.name }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
               </nuxt-link>
             </v-list>
           </div>
         </v-col>
         <v-col md="10">
-         <nuxt-child />
+          <nuxt-child />
         </v-col>
       </v-row>
     </v-container>
@@ -49,7 +45,6 @@
 export default {
   async created() {
     this.categories = await this.$content('category').fetch()
-
   },
   data() {
     return {
@@ -58,10 +53,3 @@ export default {
   },
 }
 </script>
-<style >
-   /* .active-link {
-  background-color: red;
-  border-radius: 5px;
-} */
-
-</style>
