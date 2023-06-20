@@ -31,7 +31,7 @@
         <div class="info-value">{{ user.point }}</div>
       </div>
       <div class="info-item">
-        <button class='button-update' @click="update(item.id)">Cập nhật</button>
+        <button class='button-update' @click="update(cookieID)">Cập nhật</button>
       </div>
     </div>
     <Footer/>
@@ -45,9 +45,16 @@ export default {
   data() {
       return {
         user: null,
+        cookieID: 0,
+        cookieExists: false,
       } 
   },
   mounted() {
+      if (Cookies.getToken() != null) {
+        this.cookieExists = true;
+        this.cookieID = Cookies.getUser();
+      }
+      
     let id = Cookies.getUser();
     // this.$axios
     //   .get(`http://127.0.0.1:8000/api/users/search/${id}`)
@@ -66,6 +73,11 @@ export default {
           console.log(error);
       });
   },
+  methods: {
+     update(id) {
+        this.$router.push(`/profile/${id}`);
+      },
+  }
 }
 </script>
 <style scoped>

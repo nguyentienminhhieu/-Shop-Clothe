@@ -70,20 +70,33 @@
       <option value="ja">日本語</option>
     </select>    
     </div>
+        <v-btn @click="cookieExists ? manager(cookieID) : support()" class="menu-link" text>
+        {{ (cookieExists && roleUser === 1) ? 'Quản lý' : 'Quản lý' }}
+     </v-btn>
     </v-app-bar>
   </div>
 </template>
 <script>
+import  Cookies  from "@/services/cookies.service.js";
 export default {
   data() {
     return {
       showAccountMenu: false,
       locale: this.$i18n.locale,
+      roleUser: null,
+      cookieID: 0,
+      cookieExists: false,
     };
   },
    mounted() {
     // Lắng nghe sự kiện click trên toàn bộ trang
     document.addEventListener('click', this.handleClickOutside);
+
+    if (Cookies.getToken() != null) {
+        this.cookieExists = true;
+        this.cookieID = Cookies.getUser();
+        // console.log(this.cookieID);
+      }
   },
   beforeDestroy() {
     // Gỡ bỏ lắng nghe sự kiện click trước khi component bị hủy
@@ -119,6 +132,27 @@ export default {
     //     console.error(error);
     //   });
     // }
+    manager(id) {
+        // console.log(id);
+        this.$axios
+          .get(`http://127.0.0.1:8000/api/users/search/${id}`)
+          .then((response) => {
+              console.log(response.data);
+              this.roleUser = response.data.role;
+                if (this.roleUser === 1){
+                this.$router.push(`/manager/users`);
+              }
+              else {
+                alert("Bạn không có quyền truy cập");
+                location.reload();
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+      
+          // this.$router.push(`/manager/users`);
+      }
   },
 }
 </script>
