@@ -45,7 +45,7 @@ export default {
   data() {
       return {
         user: null,
-        cookieID: 0,
+        cookieID: null,
         cookieExists: false,
       } 
   },
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
      update(id) {
-        this.$router.push(`/profile/${id}`);
+       this.$router.push(`/users/profile/${id}`);
       },
   }
 }

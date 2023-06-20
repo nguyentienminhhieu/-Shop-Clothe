@@ -60,8 +60,8 @@ export default {
         .put(`http://127.0.0.1:8000/api/info/update`, data)
         .then((response) => {
             if (response.data.result === true) {
-            alert(response.data.message);
-            this.$router.push('../');
+            alert(response.data.message); 
+            this.$router.push('./');
             } else {
             alert(response.data.message);
             return;
@@ -72,7 +72,7 @@ export default {
         });
     },
     homeAccount() {
-      this.$router.push('../');
+      this.$router.push('./');
     },
   },
 }
