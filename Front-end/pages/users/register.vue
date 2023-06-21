@@ -125,7 +125,7 @@ export default {
           })
           .then((response) => {
             if (response.data == true) {
-              alert('Đăng ký thành công! Vui lòng đăng nhập lại')
+              alert('Đăng ký thành công! Vui lòng kiểm tra email đăng ký để xác thực tài khoản')
               this.$router.push(`/users/login`)
             } else {
               alert('Đăng ký thất bại. Vui lòng thử lại')
