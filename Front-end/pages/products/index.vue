@@ -71,6 +71,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import { GET_PRODUCTS } from '@/store/products'
+import  Cookies  from "@/services/cookies.service.js";
+
 export default {
   async created() {
     await this.$store.dispatch(`${GET_PRODUCTS}`)
@@ -98,8 +100,13 @@ export default {
   },
   methods: {
     addToCart(product) {
-      this.$router.push('/products')
-      this.$store.commit('cart/AddToCart', product)
+      if (!Cookies.getUser()) {
+        alert('Bạn cần đăng nhập để mua hàng');
+      }
+      else {
+        this.$router.push('/products')
+        this.$store.commit('cart/AddToCart', product)
+      }
     },
     goToProduct(productId) {
       this.$router.push(`/products/${productId}`)

@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import  Cookies  from "@/services/cookies.service.js";
+
 export default {
   async created() {
     this.$axios
@@ -82,7 +84,13 @@ export default {
   },
   methods: {
     addToCart(product) {
-      this.$store.commit('cart/AddToCart', product)
+      if (!Cookies.getUser()) {
+        alert('Bạn cần đăng nhập để mua hàng');
+      }
+      else {
+        this.$router.push('/products')
+        this.$store.commit('cart/AddToCart', product)
+      }
     },
     goToProduct(productId) {
       this.$router.push(`/products/${productId}`)

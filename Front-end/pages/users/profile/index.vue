@@ -67,7 +67,7 @@ export default {
   },
   methods: {
      update(id) {
-       this.$router.push(`/users/profile/${id}`);
+        this.$router.push(`/users/profile/${id}`);
       },
   }
 }
