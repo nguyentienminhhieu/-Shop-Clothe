@@ -14,7 +14,7 @@ export default {
     if (itemfound) {
       itemfound.quantity += 1
     }
-
+    
     //Update local storage
     localStorage.setItem('myCart', JSON.stringify(state.cart))
 

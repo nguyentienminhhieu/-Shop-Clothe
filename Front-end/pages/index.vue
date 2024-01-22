@@ -21,7 +21,7 @@ import { GET_PRODUCTS } from '@/store/products'
 export default {
   async created() {
     await this.$store.dispatch(`${GET_PRODUCTS}`)
-  },
+  },  
   computed: {
     ...mapGetters({
       products: 'getProducts',

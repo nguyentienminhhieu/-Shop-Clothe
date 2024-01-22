@@ -21,7 +21,7 @@ const actions = {
   async [GET_PRODUCTS]({ commit }, payload) {
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/products')
-      const products = response.data
+      let products = response.data
       commit('setProducts', products)
       return products
     } catch (error) {
@@ -29,6 +29,16 @@ const actions = {
       throw error
     }
   },
+  // productApi() {
+  //   this.$axios.get('http://127.0.0.1:8000/api/products')
+  //   .then((response) => {
+  //    const data = response.data
+  //     this.products = data 
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   })
+  // },
   async [GET_PRODUCTS_ID]({ commit }, payload) {
     return new Promise((resolve, reject) => {
       this.$get(GET_PRODUCTS_ID, payload)
@@ -65,6 +75,12 @@ const getters = {
   productWatch(state) {
     return state.products.filter((product) => product.tag_id == 5)
   },
+  // productWathch(sate) { 
+  //  return state.products.filter((product) => product.tag_id == 5)
+  // }
+  // productPerfume(state) {
+  //   return state.product.filter((product) => product.tag_id == 3)
+  // }
 }
 
 export default {

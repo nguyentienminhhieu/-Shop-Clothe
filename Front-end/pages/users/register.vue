@@ -22,9 +22,9 @@
                     ></v-text-field>
 
                     <div v-if="$v.username.$error" class="form-error">
-                      <span v-if="!$v.username.required"
-                        >Yêu cầu nhập tài khoản</span
-                      >
+                      <span v-if="!$v.username.required">
+                        Yêu cầu nhập tài khoản
+                        </span>
                     </div>
 
                     <v-text-field

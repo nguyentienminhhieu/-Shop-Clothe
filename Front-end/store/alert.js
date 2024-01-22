@@ -21,14 +21,14 @@ const actions = {
     commit('clear')
     commit('success', payload)
     // setTimeout(() => {
-    //     commit('success', "");;
+    //     commit('success', "");
     // }, 3000);
   },
   async [ERROR]({ commit }, message) {
     commit('clear')
     commit('error', message)
     // setTimeout(() => {
-    //     commit('error', "");;
+    //     commit('error', "");
     // }, 3000);
   },
   async [CLEAR]({ commit }) {

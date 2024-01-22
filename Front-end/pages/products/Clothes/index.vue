@@ -14,7 +14,7 @@
         <v-fade-transition :key="`product${p.id}-${i}`">
           <v-col cols="12" md="4">
             <v-card nuxt color="surface" class="el ma-2 mb-5 mr-5">
-              <div @click="goToProduct(p.id)">
+              <div @click="goToProduct(p.id)">  
                 <v-img :src="p.image" height="300">
                   <template #placeholder>
                     <v-row class="fill-height" justify="center" align="center">
@@ -59,7 +59,7 @@
               <v-card-actions>
                 <v-btn color="primary" text @click="addToCart(p)">
                   Thêm vào giỏ hàng
-                </v-btn>
+                </v-btn> 
               </v-card-actions>
             </v-card>
           </v-col>
@@ -86,6 +86,7 @@ export default {
   computed: {
     ...mapGetters({
       products: 'productClothes',
+      
     }),
     filteredProducts() {
       if (!this.products || !this.search) return this.products

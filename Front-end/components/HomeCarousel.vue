@@ -66,7 +66,7 @@ export default {
   computed: {
     productSale() {
       return this.sale_items.filter(product => product.onSale == true)
-    },
+    }, 
     isMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },

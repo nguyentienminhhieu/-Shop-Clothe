@@ -111,7 +111,7 @@ export default {
     goToProduct(productId) {
       this.$router.push(`/products/${productId}`)
     },
-  },
+  }, 
 }
 </script>
 

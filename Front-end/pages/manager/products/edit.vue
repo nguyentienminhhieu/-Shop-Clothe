@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       tags: [],
-      product: [],
+      product: {},
       name: '',
       image: '',
       quantity: 1,
